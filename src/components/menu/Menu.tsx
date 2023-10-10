@@ -1,3 +1,4 @@
+// Components //
 import MegaMenu from "./mega-menu/MegaMenu";
 import SidebarMenu from "./sidebar-menu/SidebarMenu";
 

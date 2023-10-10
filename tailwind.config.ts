@@ -13,7 +13,7 @@ const config: Config = {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1676px",
       },
     },
     extend: {
@@ -59,9 +59,9 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
-        vazirmatn: ["Vazirmatn", "IRANSans", "Tahoma"],
-        sahel: ["sahel", "IRANSans", "Tahoma"],
-        iranyekan: ["iranyekan", "IRANSans", "Tahoma"],
+        main: ["iranyekan", "IRANSans", "Tahoma"],
+        titles: ["sahel", "IRANSans", "Tahoma"],
+        nav: ["Vazirmatn", "IRANSans", "Tahoma"],
       },
       keyframes: {
         "accordion-down": {

@@ -62,8 +62,8 @@
 html {
   background-color: #ffffff;
   box-sizing: border-box;
-  font-size: 62.5%;
   max-width: 100vw;
+  /* font-size: 8px; */
 }
 
 body,
@@ -81,15 +81,15 @@ html {
 }
 
 /* Set typography */
-body,
+/* body,
 button,
 input,
 select,
 textarea {
-  font-size: 14px;
+  font-size: 1em;
   font-family: "'iranyekan', 'Vazirmatn', 'sahel', ' IRANSans' , ' Tahoma ', 'sans-serif'";
-  line-height: 20px;
-}
+  line-height: 1.6;
+} */
 
 /* Remove default margin */
 body,
@@ -175,13 +175,13 @@ body::-webkit-scrollbar-track {
 
 /* Handle */
 body::-webkit-scrollbar-thumb {
-  background-color: #e74c3c;
+  background-color: #2563eb;
   border-radius: 100vw;
 }
 
 /* Handle on hover */
 body::-webkit-scrollbar-thumb:hover {
-  background: #e74c3c;
+  background: #2563eb;
 }
 
 /* ? Iranyekan fonts */
@@ -330,3 +330,9 @@ body::-webkit-scrollbar-thumb:hover {
   font-style: normal;
   font-display: swap;
 }
+
+/* @media (min-width: 360px) {
+  html {
+    font-size: 62.5%;
+  }
+} */

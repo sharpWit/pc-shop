@@ -1,0 +1,228 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  fristName     String?
+  lastName      String?
+  username      String    @unique
+  email         String    @unique
+  emailVerified DateTime?
+  password      String
+  image         String?
+  address       String?
+  phoneNum      Int?
+  postalCode    Int?
+  createAt      DateTime  @default(now())
+  updateAt      DateTime  @updatedAt
+  isAdmin       Boolean   @default(false)
+  accounts      Account[]
+  sessions      Session[]
+  Order         Order[]
+}
+
+model VerificationToken {
+  identifier  String
+  token       String   @unique
+  expires     DateTime
+
+  @@unique([identifier, token])
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  name        String
+  title       String
+  desc        String?
+  icon        String?
+  imgSrc      String
+  imgWidth    Int
+  imgHeight   Int
+  href        String   @unique
+  styles      Json?
+  subCategories SubCategory[]
+  productGroup ProductGroup[]
+  products    Product[]
+  sliders     Slider[]
+}
+
+model SubCategory {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  name        String
+  title       String
+  desc        String?
+  icon        String?
+  slug        String
+  href        String   @unique
+  category    Category   @relation(fields: [slug], references: [href])
+  productGroup ProductGroup[]
+  products    Product[]
+}
+
+model ProductGroup {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  name        String
+  title       String
+  desc        String?
+  icon        String?
+  slug        String
+  subSlug     String
+  href        String   @unique
+  category    Category @relation(fields: [slug], references: [href])
+  subCategory SubCategory @relation(fields: [subSlug], references: [href])
+  products    Product[]
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  modified_at DateTime?
+  deleted_at  DateTime?
+  title       String
+  enTitle     String @unique
+  desc        String?
+  img         String[]
+  price       Decimal
+  isOffer     Boolean  @default(false)
+  discount    Int?
+  rate        Int?
+  slug        String
+  subSlug     String
+  groupTitle  String
+  brand       Brand    @relation(fields: [brandId], references: [id])
+  brandId     String
+  details     Json[]
+  category    Category @relation(fields: [slug], references: [href])
+  subCategory SubCategory @relation(fields: [subSlug], references: [href])
+  productGroup ProductGroup @relation(fields: [groupTitle], references: [href])
+}
+
+model Brand {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  name        String 
+  title       String?
+  desc        String?
+  logo        String
+  slug        String
+  products    Product[]
+}
+
+model Slider {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  title       String
+  desc        String
+  img         String
+  slug        String
+  category    Category @relation(fields: [slug], references: [href])
+}
+
+model Order {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  price       Decimal
+  products    Json[]
+  status      String
+  intent_id   String?  @unique
+  user        User     @relation(fields: [userEmail], references: [email])
+  userEmail   String
+}
+
+model Banner {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  title       String
+  desc        String
+  buttonText  String
+  imgSrc      String
+  imgWidth     Int
+  imgHeight    Int
+  discountDate Int
+  slug        String
+}
+
+model BannerContent {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  title       String 
+  description String
+  buttonText  String
+  imgSrc      String
+  imgWidth    Int
+  imgHeight   Int
+  numberOfDiscountDate Int 
+  href        String
+}
+
+model Benefit {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  title       String 
+  imgSrc      String
+  imgWidth    Int
+  imgHeight   Int
+  desc String
+}
+model Social {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  name        String 
+  icon        String
+  href        String
+}
+model FooterLink {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  title       String   @unique 
+  href        String
+  icon        String
+  footerLinks FooterLinks[]
+}
+model FooterLinks {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  title       String 
+  text        String 
+  href        String
+  footerLink  FooterLink @relation(fields: [title], references: [title])
+}

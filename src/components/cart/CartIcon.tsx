@@ -1,14 +1,17 @@
-import Link from "next/link";
+// Cores //
 import React from "react";
+import Link from "next/link";
+
+// Icons //
 import { ShoppingCart } from "lucide-react";
 
 const CartIcon = () => {
   return (
     <Link
       href="/cart"
-      className="relative flex items-center md:pr-6 md:border-r-2 md:border-r-foreground/40 z-50"
+      className="relative flex items-center lg:pr-4 lg:border-r-2 lg:border-r-foreground/40 z-50"
     >
-      <ShoppingCart style={{ fontSize: "2em" }} />
+      <ShoppingCart />
     </Link>
   );
 };

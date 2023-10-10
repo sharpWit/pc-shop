@@ -1,3 +1,4 @@
+// Cores //
 import Link from "next/link";
 
 const logoSvg = `
