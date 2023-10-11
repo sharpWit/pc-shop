@@ -1,4 +1,5 @@
 // Components //
+import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 
 const Template = (props: React.PropsWithChildren) => {
@@ -6,9 +7,10 @@ const Template = (props: React.PropsWithChildren) => {
     <>
       <Header />
 
-      <main className=" flex flex-col flex-grow shrink-0 max-w-[1676px] w-full min-h-screen pt-[2rem] lg:pt-[9rem] mx-auto">
+      <main className=" flex flex-col items-center w-full min-h-screen h-[calc(100vh-9rem)] grow shrink-0 pt-[2rem] lg:pt-[9rem]  bg-background">
         {props.children}
       </main>
+      <Footer />
     </>
   );
 };

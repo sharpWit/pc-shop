@@ -10,7 +10,7 @@ const NotFoundPage = () => {
   const router = useRouter();
 
   return (
-    <section className="block container mt-3 md:mt-6 ">
+    <section className="container max-w-[1280px] w-full mt-3 md:mt-6 grow">
       <div className="flex flex-col items-center font-titles">
         <h2 className="font-black text-xl md:text-2xl text-red-800 mb-4">
           خطای 404، صفحه یافت نشد!
