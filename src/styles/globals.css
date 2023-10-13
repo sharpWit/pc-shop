@@ -336,3 +336,34 @@ body::-webkit-scrollbar-thumb:hover {
     font-size: 62.5%;
   }
 } */
+
+/* Slick carousel */
+
+.slick-dots li button::before {
+  font-size: 12px !important;
+}
+
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
+  opacity: 0.45 !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  opacity: 9 !important;
+  content: "" !important;
+}
+
+@media (min-width: 1024px) {
+  .slick-dots li button:before {
+    font-size: 12px;
+  }
+  .slick-dots {
+    padding-bottom: 40px !important;
+  }
+}
+
+/* CSS Debug */
+/* * {
+  border: 1px solid red;
+} */

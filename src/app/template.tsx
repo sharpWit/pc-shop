@@ -7,7 +7,7 @@ const Template = (props: React.PropsWithChildren) => {
     <>
       <Header />
 
-      <main className=" flex flex-col items-center w-full min-h-screen h-[calc(100vh-9rem)] grow shrink-0 pt-[2rem] lg:pt-[9rem]  bg-background">
+      <main className=" flex flex-col items-center w-full min-h-screen h-[calc(100vh-9rem)] flex-grow shrink-0 pt-[1rem] lg:pt-[9rem] bg-background text-foreground">
         {props.children}
       </main>
       <Footer />

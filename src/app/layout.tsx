@@ -1,5 +1,7 @@
 // Styles //
 import "@/styles/globals.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 // Cores //
 import type { Metadata } from "next";
@@ -10,6 +12,7 @@ import { ThemeProvider } from "providers/ThemeProvider";
 
 // Components //
 import { Toaster } from "@/components/ui/toasts/toaster";
+import QueryProvider from "@/providers/QueryProvider";
 
 export const metadata: Metadata = {
   title: "فروشگاه بست‌ستاپز",
@@ -22,16 +25,18 @@ export default function RootLayout(props: React.PropsWithChildren) {
     <html lang="fa">
       <body>
         <AuthProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <div className=" flex flex-col items-center min-h-full h-full relative">
-              {props.children}
-            </div>
-          </ThemeProvider>
+          <QueryProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <div className=" flex flex-col items-center min-h-full h-full relative">
+                {props.children}
+              </div>
+            </ThemeProvider>
+          </QueryProvider>
         </AuthProvider>
         <Toaster />
       </body>
