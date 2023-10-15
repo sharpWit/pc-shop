@@ -10,7 +10,6 @@ import Carousel from "@/components/carousel/Carousel";
 // import useOferredProducts from "./useOferredProducts";
 // import useProducts from "./useProducts";
 // import Spinner from "@/components/UI/Spinner ";
-// import Benefits from "@/components/Benefits/Benefits ";
 // import { newestProductsFn } from "@/utilities/sortByTimeStamp ";
 
 // const Offers = dynamic(() => import("../../components/Offers/Offers"));
@@ -43,12 +42,11 @@ const Home = () => {
   return (
     <>
       <Carousel />
-      {/* <Benefits />
-      <Offers />
-      <Category />
-      <Newest />
-      <Banners />
-      <Brands /> */}
+      {/* <Offers /> */}
+      {/* <Category /> */}
+      {/* <Newest /> */}
+      {/* <Banners /> */}
+      {/* <Brands /> */}
     </>
   );
 };
