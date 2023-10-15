@@ -32,7 +32,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
               enableSystem
               disableTransitionOnChange
             >
-              <div className=" flex flex-col items-center min-h-full h-full relative">
+              <div className=" flex flex-col items-center h-full relative ">
                 {props.children}
               </div>
             </ThemeProvider>

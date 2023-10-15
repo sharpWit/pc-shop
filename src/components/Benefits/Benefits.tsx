@@ -17,27 +17,27 @@ import { Card, CardContent, CardHeader } from "../ui/card/Card";
 
 const Benefits = () => {
   return (
-    <div className="flex items-center justify-center gap-4 my-12 lg:my-8 max-w-[1400px] w-full flex-wrap lg:flex-nowrap">
+    <div className="flex items-center justify-center gap-4 my-12 lg:my-8 max-w-[1200px] w-full flex-wrap lg:flex-nowrap">
       {benefitContent.map((benefitItem) => {
         return (
           <Card
-            className=" basis-[90%] md:basis-[45%] lg:basis-1/4 p-4 "
+            className=" basis-[90%] md:basis-[45%] lg:basis-1/4 p-4 max-h-[8rem] h-full overflow-hidden"
             key={benefitItem.title}
           >
             <Dialog>
-              <DialogTrigger className="cursor-pointer">
-                <CardContent>
-                  <Image
-                    height={48}
-                    width={48}
-                    src={benefitItem.imgSrc}
-                    alt={benefitItem.title}
-                  />
-                </CardContent>
-
-                <CardHeader className="font-titles">
+              <DialogTrigger className="flex items-center justify-between w-full cursor-pointer pb-2">
+                <CardHeader className="basis-1/2 self-start font-titles font-semibold text-[1.1em]">
                   {benefitItem.title}
                 </CardHeader>
+                <CardContent className="basis-1/2">
+                  <Image
+                    height={60}
+                    width={60}
+                    src={benefitItem.imgSrc}
+                    alt={benefitItem.title}
+                    className=" w-auto h-auto"
+                  />
+                </CardContent>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader className=" font-titles">

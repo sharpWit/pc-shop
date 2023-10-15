@@ -163,23 +163,27 @@ select {
 /* scrollbar */
 
 /* width */
+
 body::-webkit-scrollbar {
   width: 0.5rem;
   height: 0.5rem;
 }
 
 /* Track */
+
 body::-webkit-scrollbar-track {
   background-color: rgb(var(--color-bg));
 }
 
 /* Handle */
+
 body::-webkit-scrollbar-thumb {
   background-color: #2563eb;
   border-radius: 100vw;
 }
 
 /* Handle on hover */
+
 body::-webkit-scrollbar-thumb:hover {
   background: #2563eb;
 }

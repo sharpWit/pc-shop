@@ -1,7 +1,9 @@
 // "use client";
 
 // Components //
-import Carousel from "@/components/carousel/Carousel";
+// import Carousel from "@/components/carousel/Carousel";
+import Benefits from "@/components/benefits/Benefits";
+import Featured from "@/components/featured/Featured";
 // import dynamic from "next/dynamic";
 // import { useEffect } from "react";
 // import { useDispatch } from "react-redux";
@@ -41,7 +43,9 @@ const Home = () => {
 
   return (
     <>
-      <Carousel />
+      <Featured />
+      <Benefits />
+      {/* <Carousel /> */}
       {/* <Offers /> */}
       {/* <Category /> */}
       {/* <Newest /> */}

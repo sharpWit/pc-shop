@@ -1,8 +1,5 @@
 "use client";
 
-// Cores //
-import Loading from "@/app/loading";
-
 // Instruments //
 import Slider from "react-slick";
 
@@ -13,14 +10,10 @@ import { ChevronFirst, ChevronLast } from "lucide-react";
 import Slide from "./Slide";
 import { NextArrow, PrevArrow } from "./Arrows";
 
-// Hooks //
-import useCarousel from "./useCarousel";
+// Constants //
+import { sliders } from "../../constants/sliders";
 
 const Carousel = () => {
-  const { sliders, isLoading } = useCarousel();
-
-  if (isLoading) return <Loading />;
-
   const settings = {
     rtl: true,
     dots: true,
@@ -40,7 +33,7 @@ const Carousel = () => {
     ),
   };
   return (
-    <div className="relative max-w-[1676px] w-full h-auto ">
+    <div className="relative w-full h-full">
       <Slider {...settings}>
         {sliders?.map((item) => {
           return <Slide key={item.id} {...item} />;
