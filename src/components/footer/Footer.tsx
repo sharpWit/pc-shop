@@ -10,7 +10,7 @@ import SocialPart from "./Socials";
 
 const Footer = () => {
   return (
-    <footer className=" w-full bg-secondary text-secondary-foreground mt-[2rem] mb-0 pt-6">
+    <footer className="hidden lg:block w-full bg-secondary text-secondary-foreground mt-[2rem] mb-0 pt-6">
       <section className=" container max-w-[1676px] w-full flex flex-col">
         <div className=" flex flex-col lg:flex-row lg:justify-between gap-4 lg:gap-0 mb-2 ">
           <FooterColumns />

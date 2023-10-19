@@ -17,7 +17,7 @@ import { Card, CardContent, CardHeader } from "../ui/card/Card";
 
 const Benefits = () => {
   return (
-    <div className="flex items-center justify-center gap-4 my-12 lg:my-8 max-w-[1200px] w-full flex-wrap lg:flex-nowrap">
+    <div className="flex items-center justify-center gap-4 my-8 lg:my-6 max-w-[1200px] w-full flex-wrap lg:flex-nowrap">
       {benefitContent.map((benefitItem) => {
         return (
           <Card

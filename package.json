@@ -29,6 +29,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
     "react-slick": "^0.29.0",
+    "sharp": "^0.32.6",
     "slick-carousel": "^1.8.1",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",

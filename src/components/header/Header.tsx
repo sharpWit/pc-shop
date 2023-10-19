@@ -11,7 +11,7 @@ import { ModeToggle } from "../theme/theme-toggle";
 
 const Header = () => {
   return (
-    <header className="lg:fixed top-0 left-0 right-0 w-full max-h-[9rem] h-[8.1rem] z-[1000] bg-secondary text-secondary-foreground font-nav border-b-2 border-solid border-border">
+    <header className="hidden lg:block lg:fixed lg:top-0 lg:left-0 lg:right-0 w-full max-h-[9rem] h-[8rem] z-[1000] bg-secondary text-secondary-foreground font-nav border-b-2 border-solid border-border">
       <div className=" container flex flex-col space-y-4">
         <div className="flex items-center justify-between mt-3 ">
           <div className=" shrink-0 -mr-3.5 lg:-mr-2">

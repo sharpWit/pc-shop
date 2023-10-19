@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
     <html lang="fa">
-      <body>
+      <body className="pt-0 lg:pt-[9rem]">
         <AuthProvider>
           <QueryProvider>
             <ThemeProvider
@@ -32,9 +32,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
               enableSystem
               disableTransitionOnChange
             >
-              <div className=" flex flex-col items-center h-full relative ">
-                {props.children}
-              </div>
+              {props.children}
             </ThemeProvider>
           </QueryProvider>
         </AuthProvider>

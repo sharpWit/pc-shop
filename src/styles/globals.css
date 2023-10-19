@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./reset.css";
+
+@import "./fonts.css";
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -50,114 +54,28 @@
 }
 
 @layer base {
+  html {
+    background-color: #ffffff;
+  }
+  body,
+  html {
+    direction: rtl;
+    height: 100%;
+    width: 100%;
+  }
+
   * {
     @apply border-border;
   }
   body {
+    overflow: auto;
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-html {
-  background-color: #ffffff;
-  box-sizing: border-box;
-  max-width: 100vw;
-  /* font-size: 8px; */
-}
-
-body,
-html {
-  direction: rtl;
-  height: 100%;
-  width: 100%;
-}
-
-/* Box sizing rules */
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-/* Set typography */
-/* body,
-button,
-input,
-select,
-textarea {
-  font-size: 1em;
-  font-family: "'iranyekan', 'Vazirmatn', 'sahel', ' IRANSans' , ' Tahoma ', 'sans-serif'";
-  line-height: 1.6;
-} */
-
-/* Remove default margin */
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
-  margin-block-end: 0;
-}
-
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role="list"],
-ol[role="list"] {
-  list-style: none;
-}
-
-/* Set core root defaults */
-html:focus-within {
-  scroll-behavior: smooth;
-}
-
-/* Set core body defaults */
-body {
-  padding: 0;
-  outline: none;
-  font-family: inherit;
-  overflow: auto;
-}
-
-/* A elements that don't have a class get default styles */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-}
-
-/* Make images easier to work with */
-img,
-picture {
-  max-width: 100%;
-  display: block;
-}
-
-/* Inherit fonts for inputs and buttons */
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
-/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-@media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+#root {
+  min-height: var(--window-inner-height);
 }
 
 /* scrollbar */
@@ -187,159 +105,6 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
   background: #2563eb;
 }
-
-/* ? Iranyekan fonts */
-
-@font-face {
-  font-family: iranyekan;
-  font-style: normal;
-  font-weight: bold;
-  src: url("/fonts/iranyekan/woff/iranyekanwebbold.woff") format("woff"),
-    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url("/fonts/ttf/iranyekanwebbold.ttf")
-      format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: iranyekan;
-  font-style: normal;
-  font-weight: 100;
-  src: url("/fonts/iranyekan/woff/iranyekanwebthin.woff") format("woff"),
-    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url("/fonts/ttf/iranyekanwebthin.ttf")
-      format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: iranyekan;
-  font-style: normal;
-  font-weight: 300;
-  src: url("/fonts/iranyekan/woff/iranyekanweblight.woff") format("woff"),
-    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url("/fonts/ttf/iranyekanweblight.ttf")
-      format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: iranyekan;
-  font-style: normal;
-  font-weight: normal;
-  src: url("/fonts/iranyekan/woff/iranyekanwebregular.woff") format("woff"),
-    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-      url("/fonts/ttf/iranyekanwebregular.ttf") format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: iranyekan;
-  font-style: normal;
-  font-weight: 500;
-  src: url("/fonts/iranyekan/woff/iranyekanwebmedium.woff") format("woff"),
-    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url("/fonts/ttf/iranyekanwebmedium.ttf")
-      format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: iranyekan;
-  font-style: normal;
-  font-weight: 800;
-  src: url("/fonts/iranyekan/woff/iranyekanwebextrabold.woff") format("woff"),
-    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-      url("/fonts/ttf/iranyekanwebextrabold.ttf") format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: iranyekan;
-  font-style: normal;
-  font-weight: 850;
-  src: url("/fonts/iranyekan/woff/iranyekanwebblack.woff") format("woff"),
-    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url("/fonts/ttf/iranyekanwebblack.ttf")
-      format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: iranyekan;
-  font-style: normal;
-  font-weight: 900;
-  src: url("/fonts/iranyekan/woff/iranyekanwebextrablack.woff") format("woff"),
-    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-      url("/fonts/ttf/iranyekanwebextrablack.ttf") format("truetype");
-  font-display: swap;
-}
-
-/*? Sahel fonts */
-
-@font-face {
-  font-family: Sahel;
-  src: url("/fonts/sahel/Sahel.eot");
-  src: url("/fonts/sahel/Sahel.eot?#iefix") format("embedded-opentype"),
-    url("/fonts/sahel/Sahel.woff2") format("woff2"),
-    url("/fonts/sahel/Sahel.woff") format("woff"),
-    url("/fonts/sahel/Sahel.ttf") format("truetype");
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: Sahel;
-  src: url("/fonts/sahel/Sahel-Bold.eot");
-  src: url("/fonts/sahel/Sahel-Bold.eot?#iefix") format("embedded-opentype"),
-    url("/fonts/sahel/Sahel-Bold.woff2") format("woff2"),
-    url("/fonts/sahel/Sahel-Bold.woff") format("woff"),
-    url("/fonts/sahel/Sahel-Bold.ttf") format("truetype");
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: Sahel;
-  src: url("/fonts/sahel/Sahel-Light.eot");
-  src: url("/fonts/sahel/Sahel-Light.eot?#iefix") format("embedded-opentype"),
-    url("/fonts/sahel/Sahel-Light.woff2") format("woff2"),
-    url("/fonts/sahel/Sahel-Light.woff") format("woff"),
-    url("/fonts/sahel/Sahel-Light.ttf") format("truetype");
-  font-weight: 300;
-}
-
-@font-face {
-  font-family: Sahel;
-  src: url("/fonts/sahel/Sahel-SemiBold.eot");
-  src: url("/fonts/sahel/Sahel-SemiBold.eot?#iefix") format("embedded-opentype"),
-    url("/fonts/sahel/Sahel-SemiBold.woff2") format("woff2"),
-    url("/fonts/sahel/Sahel-SemiBold.woff") format("woff"),
-    url("/fonts/sahel/Sahel-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: Sahel;
-  src: url("/fonts/sahel/Sahel-Black.eot");
-  src: url("/fonts/sahel/Sahel-Black.eot?#iefix") format("embedded-opentype"),
-    url("/fonts/sahel/Sahel-Black.woff2") format("woff2"),
-    url("/fonts/sahel/Sahel-Black.woff") format("woff"),
-    url("/fonts/sahel/Sahel-Black.ttf") format("truetype");
-  font-weight: 900;
-}
-
-/* ? Vazirmatn variable fonts */
-
-@font-face {
-  font-family: "Vazirmatn";
-  src: url("/fonts/vazirmatn/fonts/webfonts/Vazirmatn[wght].woff2")
-      format("woff2 supports variations"),
-    url("/fonts/vazirmatn/fonts/webfonts/Vazirmatn[wght].woff2")
-      format("woff2-variations");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* @media (min-width: 360px) {
-  html {
-    font-size: 62.5%;
-  }
-} */
 
 /* Slick carousel */
 

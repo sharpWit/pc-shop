@@ -1,0 +1,146 @@
+/* ? Iranyekan fonts */
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: bold;
+  src: url("/fonts/iranyekan/woff/iranyekanwebbold.woff") format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url("/fonts/ttf/iranyekanwebbold.ttf")
+      format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: 100;
+  src: url("/fonts/iranyekan/woff/iranyekanwebthin.woff") format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url("/fonts/ttf/iranyekanwebthin.ttf")
+      format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: 300;
+  src: url("/fonts/iranyekan/woff/iranyekanweblight.woff") format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url("/fonts/ttf/iranyekanweblight.ttf")
+      format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/iranyekan/woff/iranyekanwebregular.woff") format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url("/fonts/ttf/iranyekanwebregular.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/iranyekan/woff/iranyekanwebmedium.woff") format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url("/fonts/ttf/iranyekanwebmedium.ttf")
+      format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: 800;
+  src: url("/fonts/iranyekan/woff/iranyekanwebextrabold.woff") format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url("/fonts/ttf/iranyekanwebextrabold.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: 850;
+  src: url("/fonts/iranyekan/woff/iranyekanwebblack.woff") format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url("/fonts/ttf/iranyekanwebblack.ttf")
+      format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: 900;
+  src: url("/fonts/iranyekan/woff/iranyekanwebextrablack.woff") format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url("/fonts/ttf/iranyekanwebextrablack.ttf") format("truetype");
+  font-display: swap;
+}
+
+/*? Sahel fonts */
+
+@font-face {
+  font-family: Sahel;
+  src: url("/fonts/sahel/Sahel.eot");
+  src: url("/fonts/sahel/Sahel.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/sahel/Sahel.woff2") format("woff2"),
+    url("/fonts/sahel/Sahel.woff") format("woff"),
+    url("/fonts/sahel/Sahel.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Sahel;
+  src: url("/fonts/sahel/Sahel-Bold.eot");
+  src: url("/fonts/sahel/Sahel-Bold.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/sahel/Sahel-Bold.woff2") format("woff2"),
+    url("/fonts/sahel/Sahel-Bold.woff") format("woff"),
+    url("/fonts/sahel/Sahel-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Sahel;
+  src: url("/fonts/sahel/Sahel-Light.eot");
+  src: url("/fonts/sahel/Sahel-Light.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/sahel/Sahel-Light.woff2") format("woff2"),
+    url("/fonts/sahel/Sahel-Light.woff") format("woff"),
+    url("/fonts/sahel/Sahel-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: Sahel;
+  src: url("/fonts/sahel/Sahel-SemiBold.eot");
+  src: url("/fonts/sahel/Sahel-SemiBold.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/sahel/Sahel-SemiBold.woff2") format("woff2"),
+    url("/fonts/sahel/Sahel-SemiBold.woff") format("woff"),
+    url("/fonts/sahel/Sahel-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: Sahel;
+  src: url("/fonts/sahel/Sahel-Black.eot");
+  src: url("/fonts/sahel/Sahel-Black.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/sahel/Sahel-Black.woff2") format("woff2"),
+    url("/fonts/sahel/Sahel-Black.woff") format("woff"),
+    url("/fonts/sahel/Sahel-Black.ttf") format("truetype");
+  font-weight: 900;
+}
+
+/* ? Vazirmatn variable fonts */
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/fonts/vazirmatn/fonts/webfonts/Vazirmatn[wght].woff2")
+      format("woff2 supports variations"),
+    url("/fonts/vazirmatn/fonts/webfonts/Vazirmatn[wght].woff2")
+      format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}

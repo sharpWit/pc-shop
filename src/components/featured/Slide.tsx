@@ -16,7 +16,8 @@ const Slide: React.FC<Props> = ({ title, src, slug }) => {
           width={1990}
           height={955}
           alt={title}
-          className=" w-full h-[40vh] md:h-[50vh] lg:h-[25rem] "
+          priority
+          className=" w-full h-[40vh] md:h-[50vh] lg:h-[60vh] "
         />
       </Link>
     </>
