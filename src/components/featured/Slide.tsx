@@ -2,6 +2,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+// Components //
+import { AspectRatio } from "../ui/AspectRetio";
+
 type Props = {
   title: string;
   src: string;
@@ -11,14 +14,15 @@ const Slide: React.FC<Props> = ({ title, src, slug }) => {
   return (
     <>
       <Link href={`/${slug}`} className="block ">
-        <Image
-          src={src}
-          width={1990}
-          height={955}
-          alt={title}
-          priority
-          className=" w-full h-[40vh] md:h-[50vh] lg:h-[60vh] "
-        />
+        <AspectRatio ratio={16 / 9}>
+          <Image
+            src={src}
+            fill
+            alt={title}
+            priority
+            className="rounded-none md:rounded-md object-cover "
+          />
+        </AspectRatio>
       </Link>
     </>
   );

@@ -7,12 +7,13 @@ import "slick-carousel/slick/slick-theme.css";
 import type { Metadata } from "next";
 
 // Providers //
-import AuthProvider from "providers/AuthProvider";
-import { ThemeProvider } from "providers/ThemeProvider";
+import AuthProvider from "@/providers/AuthProvider";
+import QueryProvider from "@/providers/QueryProvider";
+import ReduxProvider from "@/providers/ReduxProvider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 // Components //
 import { Toaster } from "@/components/ui/toasts/toaster";
-import QueryProvider from "@/providers/QueryProvider";
 
 export const metadata: Metadata = {
   title: "فروشگاه بست‌ستاپز",
@@ -23,17 +24,19 @@ export const metadata: Metadata = {
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
     <html lang="fa">
-      <body className="pt-0 lg:pt-[9rem]">
+      <body>
         <AuthProvider>
           <QueryProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              {props.children}
-            </ThemeProvider>
+            <ReduxProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                {props.children}
+              </ThemeProvider>
+            </ReduxProvider>
           </QueryProvider>
         </AuthProvider>
         <Toaster />

@@ -6,7 +6,7 @@ import SignUpForm from "@/components/login-form/SignUpForm";
 
 const SignUp: NextPage = () => {
   return (
-    <section className="container max-w-2xl w-full md:w-[80%] lg:w-[40%] mt-4 lg:mt-12">
+    <section className="min-h-screen w-full md:w-2/3 lg:w-2/5 mt-8">
       <SignUpForm />
     </section>
   );

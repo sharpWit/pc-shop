@@ -5,7 +5,7 @@ import * as React from "react";
 import { Label } from "./Label";
 
 // Libraries //
-import { cn } from "lib/utils";
+import { cn } from "@/lib/utils";
 
 // Instruments //
 import * as LabelPrimitive from "@radix-ui/react-label";

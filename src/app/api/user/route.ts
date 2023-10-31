@@ -4,7 +4,7 @@ import { hash } from "bcryptjs";
 import * as z from "zod";
 
 // Libraries //
-import { db } from "lib/connect";
+import { db } from "@/lib/connect";
 
 // Define a schema for input validation
 const userSchema = z.object({

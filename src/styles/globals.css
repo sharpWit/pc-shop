@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "./reset.css";
-
 @import "./fonts.css";
 
 @layer base {
@@ -53,14 +51,34 @@
   }
 }
 
+/* --background: #FFFFFF
+--foreground: #222626
+--card: #FFFFFF
+--card-foreground: #222626
+--popover: #FFFFFF
+--popover-foreground: #222626
+--primary: #295DE7
+--primary-foreground: #D4D4D4
+--secondary: #D3D3D3
+--secondary-foreground: #2E383B
+--muted: #D3D3D3
+--muted-foreground: #A9B2B6
+--accent: #D3D3D3
+--accent-foreground: #2E383B
+--destructive: #FF4D4D
+--destructive-foreground: #D4D4D4
+--border: #D9D9D9
+--input: #D9D9D9
+--ring: #2353D3 */
+
 @layer base {
   html {
+    height: 100%;
     background-color: #ffffff;
   }
   body,
   html {
     direction: rtl;
-    height: 100%;
     width: 100%;
   }
 
@@ -68,14 +86,9 @@
     @apply border-border;
   }
   body {
-    overflow: auto;
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-}
-
-#root {
-  min-height: var(--window-inner-height);
 }
 
 /* scrollbar */
@@ -98,6 +111,10 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: #2563eb;
   border-radius: 100vw;
+  -webkit-border-radius: 100vw;
+  -moz-border-radius: 100vw;
+  -ms-border-radius: 100vw;
+  -o-border-radius: 100vw;
 }
 
 /* Handle on hover */

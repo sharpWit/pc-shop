@@ -35,15 +35,15 @@ const Carousel = () => {
   return (
     <div className="relative w-full h-full">
       <Slider {...settings}>
-        {sliders?.map((item) => {
+        {sliders.map((item) => {
           return <Slide key={item.id} {...item} />;
         })}
       </Slider>
       <>
-        <div className="absolute top-1/2 left-4 md:left-3 lg:left-8 shadow-lg rounded-full bg-card/80 p-1 drop-shadow-lg text-[0.8rem] md:text-[1.8rem]">
+        <div className="absolute top-1/2 left-4 md:left-3 lg:left-8 shadow-lg rounded-full bg-muted/80 p-1 drop-shadow-lg text-[0.8rem] md:text-[1.8rem]">
           <ChevronFirst />
         </div>
-        <div className="absolute top-1/2 right-4 md:right-3 lg:right-8 shadow-lg rounded-full bg-card/80 p-1 drop-shadow-lg text-[0.8rem] md:text-[1.8rem]">
+        <div className="absolute top-1/2 right-4 md:right-3 lg:right-8 shadow-lg rounded-full bg-muted/80 p-1 drop-shadow-lg text-[0.8rem] md:text-[1.8rem]">
           <ChevronLast />
         </div>
       </>

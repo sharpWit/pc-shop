@@ -1,10 +1,10 @@
 // Icons //
-import { CornerRightDown } from "lucide-react";
+import { AlignRight } from "lucide-react";
 
 const MainMenu = () => {
   return (
     <div className="flex items-center cursor-pointer">
-      <CornerRightDown />
+      <AlignRight />
       <h3 className=" mr-1 text-xl font-bold font-titles">دسته‌بندی کالا‌ها</h3>
     </div>
   );
