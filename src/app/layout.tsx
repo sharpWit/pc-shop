@@ -23,8 +23,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
-    <html lang="fa">
-      <body>
+    <html
+      lang="fa"
+      className="scrollbar-thumb-primary scrollbar-track-primary-foreground"
+    >
+      <body className="min-h-screen scrollbar-thin">
         <AuthProvider>
           <QueryProvider>
             <ReduxProvider>

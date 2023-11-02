@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import StarRating from "./rating/StarRating";
 import ProductPrice from "../ProductPrice";
 import CardActions from "./CardActions";
+import { AspectRatio } from "@/components/ui/AspectRetio";
 
 // Types //
 import { IProduct } from "@/types/products";
@@ -36,22 +37,26 @@ const Card: React.FC<Props> = ({ product }) => {
         className="flex md:items-center md:flex-col relative w-full"
       >
         <div className="w-1/2 md:w-full relative bg-foreground/10 px-1 md:px-6 py-2 rounded-bl-xl rounded-tl-xl md:rounded-tr-xl md:rounded-bl-none order-2 md:order-none flex flex-col justify-between items-center">
-          <div className="flex items-center h-[185px]">
-            <Image
-              src={product.img[0]}
-              fill
-              alt={product.title}
-              className="object-contain w-full h-full drop-shadow-xl hover:scale-110 transition-transform duration-300 ease-in-out !py-2 "
-            />
+          <div className="w-full">
+            <AspectRatio ratio={1 / 1}>
+              <Image
+                fill
+                src={product.img[0]}
+                alt={product.title}
+                className="rounded-md object-cover drop-shadow-xl hover:scale-110 transition-transform duration-300 ease-in-out !py-2 "
+              />
+            </AspectRatio>
           </div>
           {product?.discount ? (
             <span className="w-8 sm:w-auto block absolute -top-2 -right-2">
-              <Image
-                src="/images/discount-icon/discount.webp"
-                width={40}
-                height={40}
-                alt="discount-icon"
-              />
+              <AspectRatio ratio={1 / 1}>
+                <Image
+                  fill
+                  src="/images/discount-icon/discount.webp"
+                  alt="discount-icon"
+                  className="rounded-md object-cover"
+                />
+              </AspectRatio>
             </span>
           ) : null}
         </div>

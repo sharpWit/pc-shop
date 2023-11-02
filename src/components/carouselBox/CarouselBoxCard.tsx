@@ -14,6 +14,7 @@ import {
 
 // Types //
 import { IProduct } from "@/types/products";
+import { AspectRatio } from "../ui/AspectRetio";
 
 interface Props {
   product: IProduct;
@@ -21,33 +22,39 @@ interface Props {
 
 const CarouselBoxCard = ({ product }: Props) => {
   return (
-    <Card className="w-auto h-auto ml-2 backdrop-filter backdrop-blur-[10px]">
+    <Card className="ml-2 backdrop-filter backdrop-blur-[10px] overflow-hidden">
       <Link
         href={`/${product.slug}/${product.subSlug}/${product.groupTitle}/${product.enTitle}`}
-        className="min-w-[200px] max-w-[200px]"
       >
-        <CardContent className="h-[185px] relative">
+        <CardContent className="w-full relative">
           {product?.img[0] && (
-            <Image
-              src={product?.img[0]}
-              alt={product.title}
-              fill
-              className="object-contain hover:scale-105 transition-transform !p-2"
-            />
+            <AspectRatio ratio={1 / 1}>
+              <Image
+                fill
+                src={product?.img[0]}
+                alt={product.title}
+                className="rounded-md object-cover hover:scale-105 transition-transform
+                duration-300 ease-in-out p-2"
+              />
+            </AspectRatio>
           )}
           {product.isOffer ? (
-            <span className="block absolute top-2 right-2">
-              <Image
-                src="/images/discount-icon/discount.webp"
-                width={40}
-                height={40}
-                alt="discount-icon"
-              />
+            <span className="w-8 block absolute top-2 right-2">
+              <AspectRatio ratio={1 / 1}>
+                <Image
+                  fill
+                  src="/images/discount-icon/discount.webp"
+                  alt="discount-icon"
+                  className="rounded-md object-cover"
+                />
+              </AspectRatio>
             </span>
           ) : null}
         </CardContent>
-        <CardHeader className="h-[185px] text-right justify-between">
-          <CardTitle className="text-lg font-titles">{product.title}</CardTitle>
+        <CardHeader className="p-4 min-h-[160px] max-h-[160px] h-full justify-between">
+          <CardTitle className="mt-4 md:mt-0 text-right text-sm md:text-base font-titles">
+            {product.title}
+          </CardTitle>
           <CardDescription>
             <ProductPrice
               price={product.price}

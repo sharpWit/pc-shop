@@ -28,10 +28,10 @@ const store = configureStore({
     // activeMenuItem: activeMenuItemReducer,
   },
 
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: process.env.NODE_ENV !== "production",
-    }).concat(middleware),
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware({
+  //     serializableCheck: process.env.NODE_ENV !== "production",
+  //   }).concat(middleware),
   devTools: true,
 });
 

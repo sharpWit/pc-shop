@@ -13,7 +13,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../dialog/Dialog";
-import { Card, CardContent, CardHeader } from "../ui/card/Card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card/Card";
+import { AspectRatio } from "../ui/AspectRetio";
 
 const Benefits = () => {
   return (
@@ -25,19 +26,22 @@ const Benefits = () => {
             key={benefitItem.title}
           >
             <Dialog>
-              <DialogTrigger className="flex items-center justify-between w-full cursor-pointer pb-2">
-                <CardHeader className="basis-1/2 self-start font-titles font-semibold text-[1.1em]">
-                  {benefitItem.title}
+              <DialogTrigger asChild>
+                <CardHeader className="flex-row justify-between cursor-pointer p-1">
+                  <CardTitle className="font-titles font-semibold text-[1.1em] ">
+                    {benefitItem.title}
+                  </CardTitle>
+                  <CardContent className="w-[8rem]">
+                    <AspectRatio ratio={1 / 1}>
+                      <Image
+                        fill
+                        src={benefitItem.imgSrc}
+                        alt={benefitItem.title}
+                        className="rounded-md object-cover"
+                      />
+                    </AspectRatio>
+                  </CardContent>
                 </CardHeader>
-                <CardContent className="basis-1/2">
-                  <Image
-                    height={60}
-                    width={60}
-                    src={benefitItem.imgSrc}
-                    alt={benefitItem.title}
-                    className=" w-auto h-auto"
-                  />
-                </CardContent>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader className=" font-titles">
