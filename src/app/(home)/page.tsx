@@ -21,7 +21,7 @@ import { newestProductsFn } from "@/utils/sortByTimeStamp";
 
 // Dynamics //
 const Offers = dynamic(() => import("@/components/offers/Offers"));
-// const Category = dynamic(() => import("../../components/category/Category"));
+const Category = dynamic(() => import("../../components/category/Category"));
 // const Newest = dynamic(() => import("../../components/newest/Newest"));
 // const Brands = dynamic(() => import("../../components/brands/Brands"));
 // const Banners = dynamic(() => import("../../components/banners/Banner"), {
@@ -57,7 +57,9 @@ const Home = () => {
       <Suspense fallback={<Loading />}>
         <Offers />
       </Suspense>
-      {/* <Category /> */}
+      <Suspense fallback={<Loading />}>
+        <Category />
+      </Suspense>
       {/* <Newest /> */}
       {/* <Banners /> */}
       {/* <Brands /> */}

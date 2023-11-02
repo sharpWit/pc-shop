@@ -48,6 +48,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 48%;
+    --category: #2e383b;
   }
 }
 
@@ -69,7 +70,9 @@
 --destructive-foreground: #D4D4D4
 --border: #D9D9D9
 --input: #D9D9D9
---ring: #2353D3 */
+--ring: #2353D3 
+--category: #2E383B
+*/
 
 @layer base {
   html {
