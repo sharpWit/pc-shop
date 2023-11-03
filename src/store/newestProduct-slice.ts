@@ -2,11 +2,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Types //
-import { IProduct } from "@/types/products";
-import { IProductList } from "@/types/productList";
+import { INewestProducts, IProduct } from "@/types/products";
 
-const initialState: IProductList = {
-  productsList: [],
+const initialState: INewestProducts = {
+  newestProducts: [],
 };
 
 const newestProductsSlice = createSlice({
@@ -14,7 +13,7 @@ const newestProductsSlice = createSlice({
   initialState,
   reducers: {
     addProducts(state, action: PayloadAction<IProduct[]>) {
-      state.productsList = action.payload;
+      state.newestProducts = action.payload;
     },
   },
 });

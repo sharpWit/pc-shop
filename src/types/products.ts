@@ -42,3 +42,11 @@ export interface IBrand {
   logo: string;
   slug: string;
 }
+
+export interface INewestProducts {
+  newestProducts: IProduct[] | [];
+}
+
+export interface INewestRootState {
+  newestProductsList: INewestProducts;
+}

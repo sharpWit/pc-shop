@@ -13,7 +13,7 @@ import { SortedProductsListActions } from "@/store/sortedProductList-slice";
 
 // Components //
 import Sort from "./Sort";
-import Card from "../cards/Card";
+import Card from "../cards/ProductCard";
 
 // Types //
 import { IProduct } from "@/types/products";
