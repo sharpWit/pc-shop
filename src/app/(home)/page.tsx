@@ -23,10 +23,10 @@ import { newestProductsFn } from "@/utils/sortByTimeStamp";
 const Offers = dynamic(() => import("@/components/offers/Offers"));
 const Category = dynamic(() => import("../../components/category/Category"));
 const Newest = dynamic(() => import("../../components/newest/Newest"));
+const Banners = dynamic(() => import("../../components/banners/Banner"), {
+  ssr: false,
+});
 // const Brands = dynamic(() => import("../../components/brands/Brands"));
-// const Banners = dynamic(() => import("../../components/banners/Banner"), {
-//   ssr: false,
-// });
 
 const Home = () => {
   const { products: offeredProducts } = useOferredProducts();
@@ -63,7 +63,9 @@ const Home = () => {
       <Suspense fallback={<Loading />}>
         <Newest />
       </Suspense>
-      {/* <Banners /> */}
+      <Suspense fallback={<Loading />}>
+        <Banners />
+      </Suspense>
       {/* <Brands /> */}
     </>
   );
