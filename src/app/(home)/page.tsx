@@ -26,7 +26,7 @@ const Newest = dynamic(() => import("../../components/newest/Newest"));
 const Banners = dynamic(() => import("../../components/banners/Banner"), {
   ssr: false,
 });
-// const Brands = dynamic(() => import("../../components/brands/Brands"));
+const Brands = dynamic(() => import("../../components/brands/Brands"));
 
 const Home = () => {
   const { products: offeredProducts } = useOferredProducts();
@@ -66,7 +66,9 @@ const Home = () => {
       <Suspense fallback={<Loading />}>
         <Banners />
       </Suspense>
-      {/* <Brands /> */}
+      <Suspense fallback={<Loading />}>
+        <Brands />
+      </Suspense>
     </>
   );
 };

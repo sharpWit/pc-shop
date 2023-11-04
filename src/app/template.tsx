@@ -8,7 +8,7 @@ import Footer from "@/components/footer/Footer";
 
 const Template = (props: React.PropsWithChildren) => {
   return (
-    <div className="flex-1">
+    <div className="flex-1 flex-grow flex-shrink-0">
       <Header />
       <Suspense fallback={<Loading />}>
         <main className="container min-h-screen pt-0 lg:pt-[9rem] relative">

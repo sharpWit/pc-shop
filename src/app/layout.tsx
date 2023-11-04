@@ -27,7 +27,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
       lang="fa"
       className="scrollbar-thumb-primary scrollbar-track-primary-foreground"
     >
-      <body className="min-h-screen scrollbar-thin overflow-auto antialiased">
+      <body className="min-h-screen min-w-[320px] overflow-y-auto scrollbar-thin antialiased">
         <AuthProvider>
           <QueryProvider>
             <ReduxProvider>
