@@ -13,6 +13,9 @@ import { NextArrow, PrevArrow } from "./Arrows";
 // Constants //
 import { sliders } from "../../constants/sliders";
 
+// Styles //
+import "./carousel.scss";
+
 const Carousel = () => {
   const settings = {
     rtl: true,
@@ -24,6 +27,7 @@ const Carousel = () => {
     autoplay: true,
     autoplaySpeed: 5000,
     cssEase: "linear",
+    className: "carousel",
     prevArrow: <PrevArrow to="prev" />,
     nextArrow: <NextArrow to="next" />,
     appendDots: (dots: string) => (

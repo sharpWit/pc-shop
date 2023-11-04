@@ -75,16 +75,6 @@
 */
 
 @layer base {
-  html {
-    height: 100%;
-    background-color: #ffffff;
-  }
-  body,
-  html {
-    direction: rtl;
-    width: 100%;
-  }
-
   * {
     @apply border-border;
   }
@@ -92,6 +82,12 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+}
+
+html {
+  direction: rtl;
+  height: 100%;
+  width: 100%;
 }
 
 /* Slick carousel */

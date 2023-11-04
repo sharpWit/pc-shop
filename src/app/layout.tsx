@@ -27,7 +27,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
       lang="fa"
       className="scrollbar-thumb-primary scrollbar-track-primary-foreground"
     >
-      <body className="min-h-screen scrollbar-thin">
+      <body className="min-h-screen scrollbar-thin overflow-auto antialiased">
         <AuthProvider>
           <QueryProvider>
             <ReduxProvider>
@@ -37,7 +37,9 @@ export default function RootLayout(props: React.PropsWithChildren) {
                 enableSystem
                 disableTransitionOnChange
               >
-                {props.children}
+                <div className="relative flex min-h-screen flex-col">
+                  {props.children}
+                </div>
               </ThemeProvider>
             </ReduxProvider>
           </QueryProvider>

@@ -3,12 +3,12 @@ import { Suspense } from "react";
 
 // Components //
 import Loading from "./loading";
-import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
 const Template = (props: React.PropsWithChildren) => {
   return (
-    <div className="min-h-screen flex flex-col items-center relative">
+    <div className="flex-1">
       <Header />
       <Suspense fallback={<Loading />}>
         <main className="container min-h-screen pt-0 lg:pt-[9rem] relative">

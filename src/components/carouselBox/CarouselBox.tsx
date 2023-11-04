@@ -82,8 +82,8 @@ const CarouselBox = ({ title, className, children, href, full }: Props) => {
         </h2>
         {!full ? (
           <Link
-            href={`/${href}`}
-            className="text-secondary-foreground text-sm font-bold py-2 px-6 -mb-4 shadow-lg block rounded-lg backdrop-filter backdrop-blur-[10px] bg-card"
+            href={`${href}`}
+            className="text-primary-foreground text-sm font-bold py-2 px-6 -mb-4 shadow-lg block rounded-lg backdrop-filter backdrop-blur-[10px] bg-primary"
           >
             دیدن همه
           </Link>

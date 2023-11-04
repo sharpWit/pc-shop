@@ -7,7 +7,7 @@ import { AspectRatio } from "../ui/AspectRetio";
 
 const Featured = () => {
   return (
-    <section className="flex flex-wrap justify-center md:grid md:grid-rows-2 md:grid-cols-12 gap-2 m-0 md:m-2 lg:m-0 max-w-full">
+    <section className="flex flex-wrap justify-center md:grid md:grid-rows-2 md:grid-cols-12 gap-4 m-0 md:m-2 lg:m-0 max-w-full">
       <div className="flex-1 md:row-span-2 md:col-start-1 md:col-end-10 w-full mb-8 md:mb-0 ">
         <Carousel />
       </div>

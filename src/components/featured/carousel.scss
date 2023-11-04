@@ -1,0 +1,5 @@
+@media (min-width: 768px) {
+  .carousel .slick-list {
+    border-radius: calc(var(--radius) - 2px);
+  }
+}
