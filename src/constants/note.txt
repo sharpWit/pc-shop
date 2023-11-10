@@ -1,0 +1,188 @@
+{
+  "order":"1",
+  "gridRowStart":"1",
+  "gridColumnStart": "span 3",
+  "display": "flex",
+  "flexDirection": "column",
+  "alignItems": "center",
+  "justifyContent": "space-between",
+  "paddingBlock": "2rem",
+  "paddingInline": "1rem",
+  "backgroundColor": "#EBE76C"
+}
+
+{
+  "order":"2",
+  "gridColumn":"4/span3",
+  "display": "flex",
+  "flexDirection": "column",
+  "alignItems": "center",
+  "justifyContent": "space-between",
+  "paddingBlock": "2rem",
+  "paddingInline": "1rem",
+  "backgroundColor": "#90b376"
+}
+
+{
+  "order":"3",
+  "gridRowStart":"2",
+  "gridColumnStart": "span 2",
+  "display": "flex",
+  "flexDirection": "column",
+  "alignItems": "center",
+  "justifyContent": "space-between",
+  "marginRight": "16px",
+  "paddingBlock": "2rem",
+  "paddingInline": "1rem",
+  "backgroundColor": "#ED7B7B"
+}
+{
+  "order":"4",
+  "gridColumnStart": "span 2",
+  "gridColEnd":"4",
+  "display": "flex",
+  "flexDirection": "column",
+  "alignItems": "center",
+  "justifyContent": "space-between",
+  "paddingBlock": "2rem",
+  "paddingInline": "1rem",
+  "backgroundColor": "#836096"
+}
+
+
+{
+  "order":"5",
+  "gridColumn": "5 / span 2",
+  "display": "flex",
+  "flexDirection": "column",
+  "alignItems": "center",
+  "justifyContent": "space-between",
+  "paddingBlock": "2rem",
+  "paddingInline": "1rem",
+  "backgroundColor": "#769fb3"
+}
+
+
+<NavigationMenu>
+  <NavigationMenuList>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+      <NavigationMenuContent>
+        <NavigationMenuLink>Link</NavigationMenuLink>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+  </NavigationMenuList>
+</NavigationMenu>
+
+
+
+
+    // <div
+    //   className="flex items-center "
+    //   onMouseOver={showMegaMenuHandler}
+    //   onMouseOut={closeMegaMenuHandler}
+    // >
+
+    //   {/* <Transition
+    //     nodeRef={nodeRef}
+    //     in={isMegaMenuOpen!}
+    //     timeout={300}
+    //     mountOnEnter
+    //     unmountOnExit
+    //   >
+    //     {(state) => {
+    //       return (
+    //         <div ref={nodeRef} className="z-[100]">
+    //           <div
+    //             className={`fixed top-[9.4rem] inset-0 bg-gray-600/60
+    //             ${
+    //               state === "entering"
+    //                 ? "animate-fadeEntering"
+    //                 : state === "entered"
+    //                 ? "opacity-100"
+    //                 : "animate-fadeExit"
+    //             }
+    //             `}
+    //             onClick={closeMegaMenuHandler}
+    //           ></div>
+    //           <div className="absolute top-[3.8rem] left-1/4 right-0 bg-card/90 z-[110] shadow-md rounded-br-lg rounded-bl-lg">
+    //             <MenusContainer />
+    //           </div>
+    //         </div>
+    //       );
+    //     }}
+    //   </Transition> */}
+    // </div>
+
+
+
+
+  // const nodeRef = useRef<HTMLDivElement>(null);
+  // const dispatch = useDispatch();
+
+  // function showMegaMenuHandler() {
+  //   dispatch(megaMenuActions.openMegaMenu());
+  // }
+  // function closeMegaMenuHandler() {
+  //   dispatch(megaMenuActions.closeMegaMenu());
+  // }
+  // const isMegaMenuOpen = useSelector(
+  //   (state: IMegaMenuRootState) => state.megaMenu.isMegaMenuOpen
+  // );
+
+
+
+
+
+            <Menubar
+            dir="rtl"
+            className="block p-1 h-full bg-card hover:bg-card transition-colors"
+          >
+            <MenubarMenu>
+              <MenubarTrigger className="cursor-pointer p-0 w-full">
+                <PanelTopOpen
+                  size={35}
+                  className=" text-amber-600 hover:text-card-foreground transition-colors"
+                />
+              </MenubarTrigger>
+              <MenubarContent className="font-nav mt-1">
+                <MenubarItem className="h-[50vh] z-60">
+                  <NavigationMenu
+                    className="font-nav bg-primary/60 justify-center"
+                    orientation="vertical"
+                  >
+                    {categories?.length &&
+                      categories.map((cat) => (
+                        <NavigationMenuList
+                          className="text-lg"
+                          data-orientation="vertical"
+                          key={cat.id}
+                        >
+                          <NavigationMenuItem className="w-full">
+                            <NavigationMenuTrigger className="w-full flex items-center justify-between gap-2">
+                              {cat.name}
+                            </NavigationMenuTrigger>
+                            <NavigationMenuContent>
+                              <ul className="grid md:grid-cols-2 gap-3 p-4 w-[400px] md:w-[500px] lg:w-[600px]">
+                                {components.map((component) => (
+                                  <li key={component.title}>
+                                    {component.description}
+                                  </li>
+                                ))}
+                              </ul>
+                            </NavigationMenuContent>
+                          </NavigationMenuItem>
+                        </NavigationMenuList>
+                      ))}
+                  </NavigationMenu>
+                </MenubarItem>
+
+                <MenubarSeparator />
+                <MenubarItem>تماس باما</MenubarItem>
+                <MenubarSeparator />
+                <MenubarItem>باشگاه مشتریان</MenubarItem>
+                <MenubarSeparator />
+                <MenubarItem>گزارش خطا</MenubarItem>
+              </MenubarContent>
+            </MenubarMenu>
+          </Menubar>

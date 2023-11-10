@@ -34,7 +34,7 @@ const CategoryLgBox: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className="flex gap-2 rounded-md shadow-lg  overflow-hidden"
+      className="flex gap-2 rounded-md shadow-lg overflow-hidden"
       style={styles as React.CSSProperties}
     >
       <div className="flex flex-col justify-between gap-2 mx-[0.5rem]">
@@ -52,12 +52,12 @@ const CategoryLgBox: React.FC<Props> = ({
         </Link>
       </div>
       <div style={{ width: `${imgWidth}px` }}>
-        <AspectRatio ratio={11 / 9}>
+        <AspectRatio ratio={1 / 1}>
           <Image
             fill
             src={imgSrc}
             alt={title}
-            className="p-2 rounded-md object-cover drop-shadow-lg hover:scale-95 transition-transform duration-300 "
+            className="p-2 rounded-md object-contain drop-shadow-lg hover:scale-95 transition-transform duration-300"
           />
         </AspectRatio>
       </div>

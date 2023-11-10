@@ -25,9 +25,8 @@ const Category = async () => {
     <>
       <div className="flex flex-col items-center my-4 md:my-8">
         <SectionTitle title={"دسته‌بندی کالا‌ها"} />
-
         {/* 📱 sm and md break point */}
-        <div className="flex flex-wrap justify-between items-center p-4 max-w-[760px] lg:hidden">
+        <div className="flex flex-wrap justify-between items-center p-4 max-w-[700px] w-full lg:hidden">
           {categories.map((cat) => {
             return (
               <CategorySmBox
@@ -41,7 +40,7 @@ const Category = async () => {
         </div>
 
         {/* 💻lg break point */}
-        <div className="hidden lg:grid gap-4 grid-rows-9 grid-cols-2 md:grid-cols-9 w-full xl:max-w-7xl mx-auto">
+        <div className="hidden lg:grid grid-cols-6 grid-rows-2 gap-4 place-content-between">
           {categories.map((cat) => {
             return (
               <CategoryLgBox

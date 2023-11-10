@@ -90,7 +90,7 @@ model SubCategory {
   title       String
   desc        String?
   icon        String?
-  slug        String
+  slug        String  @unique
   href        String   @unique
   category    Category   @relation(fields: [slug], references: [href])
   productGroup ProductGroup[]
@@ -104,8 +104,8 @@ model ProductGroup {
   title       String
   desc        String?
   icon        String?
-  slug        String
-  subSlug     String
+  slug        String   @unique
+  subSlug     String   @unique
   href        String   @unique
   category    Category @relation(fields: [slug], references: [href])
   subCategory SubCategory @relation(fields: [subSlug], references: [href])
@@ -125,9 +125,9 @@ model Product {
   isOffer     Boolean  @default(false)
   discount    Int?
   rate        Int?
-  slug        String
-  subSlug     String
-  groupTitle  String
+  slug        String   @unique
+  subSlug     String   @unique
+  groupTitle  String   @unique
   brand       Brand    @relation(fields: [brandId], references: [id])
   brandId     String
   details     Json[]
