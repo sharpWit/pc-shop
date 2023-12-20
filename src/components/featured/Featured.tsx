@@ -18,6 +18,7 @@ const Featured = () => {
             src="/images/others/build-your-pc.webp"
             fill
             alt="banner"
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 800px"
             className="rounded-md object-cover cursor-pointer"
           />
         </AspectRatio>
@@ -28,6 +29,8 @@ const Featured = () => {
             src="/images/others/loan-sell.webp"
             fill
             alt="banner"
+            priority
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 800px"
             className="rounded-md object-cover cursor-pointer"
           />
         </AspectRatio>

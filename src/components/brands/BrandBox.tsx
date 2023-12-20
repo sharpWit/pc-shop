@@ -14,6 +14,7 @@ const BrandBox: React.FC<Props> = ({ brandName, imageSrc }) => {
           fill
           src={imageSrc}
           alt={brandName}
+          sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 800px"
           className="rounded-md object-contain p-2 bg-white"
         />
       </AspectRatio>

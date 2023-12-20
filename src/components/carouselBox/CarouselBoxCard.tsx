@@ -26,14 +26,15 @@ const CarouselBoxCard = ({ product }: Props) => {
       <Link
         href={`/${product.slug}/${product.subSlug}/${product.groupTitle}/${product.enTitle}`}
       >
-        <CardContent className="w-full relative">
+        <CardContent className="w-full relative p-2">
           {product?.img[0] && (
             <AspectRatio ratio={1 / 1}>
               <Image
                 fill
                 src={product?.img[0]}
                 alt={product.title}
-                className="rounded-md object-cover hover:scale-105 transition-transform
+                sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 800px"
+                className="rounded-md object-contain hover:scale-105 transition-transform
                 duration-300 ease-in-out p-2"
               />
             </AspectRatio>
@@ -45,6 +46,7 @@ const CarouselBoxCard = ({ product }: Props) => {
                   fill
                   src="/images/discount-icon/discount.webp"
                   alt="discount-icon"
+                  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 800px"
                   className="rounded-md object-cover"
                 />
               </AspectRatio>
@@ -55,13 +57,13 @@ const CarouselBoxCard = ({ product }: Props) => {
           <CardTitle className="mt-4 md:mt-0 text-right text-sm md:text-base font-titles">
             {product.title}
           </CardTitle>
-          <CardDescription>
+          <CardContent className="p-1">
             <ProductPrice
               price={product.price}
               discount={product.discount}
               isInSlider={true}
             />
-          </CardDescription>
+          </CardContent>
         </CardHeader>
       </Link>
     </Card>

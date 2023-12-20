@@ -40,17 +40,18 @@ const ProductCard: React.FC<Props> = ({ product }) => {
 
   return (
     <Card className="col-span-3 m-2 md:m-4 shadow-xl relative">
-      <CardContent>
+      <CardContent className="p-2">
         <Link
           href={`/${product.slug}/${product.subSlug}/${product.groupTitle}/${product.enTitle}`}
         >
-          <div className="w-full p-2">
+          <div className="w-full p-3">
             <AspectRatio ratio={1 / 1}>
               <Image
                 fill
                 src={product.img[0]}
                 alt={product.title}
-                className="rounded-md object-cover drop-shadow-xl hover:scale-110 transition-transform duration-300 ease-in-out "
+                sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 800px"
+                className="rounded-md object-contain drop-shadow-xl hover:scale-110 transition-transform duration-300 ease-in-out"
               />
             </AspectRatio>
           </div>
@@ -61,6 +62,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
                   fill
                   src="/images/discount-icon/discount.webp"
                   alt="discount-icon"
+                  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 800px"
                   className="rounded-md object-cover"
                 />
               </AspectRatio>
@@ -68,7 +70,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
           ) : null}
         </Link>
       </CardContent>
-      <CardHeader className="mb-4 gap-2">
+      <CardHeader className="p-3 gap-2">
         <StarRating
           defaultValue={product.rate}
           onSetRating={setUserRating}
@@ -78,11 +80,11 @@ const ProductCard: React.FC<Props> = ({ product }) => {
         <CardTitle className="text-sm md:text-base font-titles">
           {product.title}
         </CardTitle>
-        <CardDescription>
+        <CardContent className="p-0">
           <ProductPrice price={product.price} discount={product.discount} />
-        </CardDescription>
+        </CardContent>
       </CardHeader>
-      <CardFooter className="p-1 absolute bottom-2 left-0 right-0 md:top-2 md:bottom-auto md:left-1 md:right-auto">
+      <CardFooter className="p-1 md:absolute md:top-2 md:bottom-auto md:left-1 md:right-auto">
         <CardActions product={product} />
       </CardFooter>
     </Card>

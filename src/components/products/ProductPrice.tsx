@@ -58,9 +58,9 @@ const ProductPrice: React.FC<Props> = ({
               </ins>
             </span>
             <span
-              className="text-accent-foreground ml-1 text-[12px] inline-block"
+              className="text-accent-foreground mx-1 text-[12px] inline-block"
               // style={{ direction: "rtl" }}
-            >{`(-%${changeNumbersFormatEnToFa(discount!)})`}</span>
+            >{`(%${changeNumbersFormatEnToFa(discount!)}-)`}</span>
           </div>
         ) : (
           <div>

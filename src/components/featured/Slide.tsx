@@ -20,6 +20,7 @@ const Slide: React.FC<Props> = ({ title, src, slug }) => {
             fill
             alt={title}
             priority
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 800px"
             className="rounded-none md:rounded-md object-cover "
           />
         </AspectRatio>

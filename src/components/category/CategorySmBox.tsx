@@ -14,13 +14,14 @@ const CategorySmBox: React.FC<Props> = ({ title, imgSrc, href }) => {
   return (
     <Link href={`${href}`} className="w-full md:w-1/2 my-4">
       <div className="flex flex-col items-center justify-between">
-        <div className="w-[300px]">
+        <div className="w-full">
           <AspectRatio ratio={1 / 1}>
             <Image
               fill
               src={imgSrc}
               alt={title}
-              className="rounded-md object-cover p-4"
+              sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 800px"
+              className="rounded-md object-contain p-4"
             />
           </AspectRatio>
         </div>
