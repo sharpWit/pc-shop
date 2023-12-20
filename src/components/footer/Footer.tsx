@@ -24,7 +24,7 @@ const Footer = () => {
           </div>
           <div className="py-1">
             <Link
-              href="#"
+              href="/"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-input text-input-foreground font-bold font-serif px-2 py-1"

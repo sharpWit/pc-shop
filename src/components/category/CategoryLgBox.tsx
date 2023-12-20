@@ -22,7 +22,6 @@ interface Props {
   };
   href: string;
   imgSrc: string;
-  imgWidth: number;
 }
 const CategoryLgBox: React.FC<Props> = ({
   title,
@@ -30,11 +29,10 @@ const CategoryLgBox: React.FC<Props> = ({
   styles,
   href,
   imgSrc,
-  imgWidth,
 }) => {
   return (
     <div
-      className="flex gap-2 rounded-md shadow-lg overflow-hidden"
+      className="w-full flex gap-2 rounded-md shadow-lg overflow-hidden"
       style={styles as React.CSSProperties}
     >
       <div className="flex flex-col justify-between gap-2 mx-[0.5rem]">
@@ -51,12 +49,13 @@ const CategoryLgBox: React.FC<Props> = ({
           </Button>
         </Link>
       </div>
-      <div style={{ width: `${imgWidth}px` }}>
+      <div className="w-full">
         <AspectRatio ratio={1 / 1}>
           <Image
             fill
             src={imgSrc}
             alt={title}
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 800px"
             className="p-2 rounded-md object-contain drop-shadow-lg hover:scale-95 transition-transform duration-300"
           />
         </AspectRatio>

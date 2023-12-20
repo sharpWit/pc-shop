@@ -47,27 +47,25 @@ const ProductList: React.FC<Props> = ({ productList: products }) => {
     setSelectedRadioBtn(e.currentTarget.id);
   }
 
+  const ProductGrid = ({ products }: { products: IProduct[] }) => (
+    <div className="grid gap-4 md:gap-2 grid-cols-6 md:grid-cols-12">
+      {products.map((product: IProduct) => (
+        <Card key={product.id} product={product} />
+      ))}
+    </div>
+  );
+
   return (
     <div className="max-w-full w-full mx-auto">
       {isInNewestProductsPage && products?.length ? (
-        <div className="grid gap-4 md:gap-2 grid-cols-6 md:grid-cols-12">
-          {products
-            ? products.map((product: IProduct) => {
-                return <Card key={product.id} product={product} />;
-              })
-            : null}
-        </div>
+        <ProductGrid products={products} />
       ) : sortedProductList && sortedProductList.length ? (
         <div>
           <Sort
             selectedBtn={selectedRadioBtn}
             onChangeSelectedBtn={onChangeHandler}
           />
-          <div className="grid gap-4 md:gap-2 grid-cols-6 md:grid-cols-12">
-            {sortedProductList.map((product: IProduct) => {
-              return <Card key={product.id} product={product} />;
-            })}
-          </div>
+          <ProductGrid products={sortedProductList} />
         </div>
       ) : products ? (
         <Loading />

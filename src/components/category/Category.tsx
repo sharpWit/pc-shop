@@ -40,7 +40,7 @@ const Category = async () => {
         </div>
 
         {/* 💻lg break point */}
-        <div className="hidden lg:grid grid-cols-6 grid-rows-2 gap-4 place-content-between">
+        <div className="hidden lg:grid grid-cols-6 grid-rows-2 gap-4 justify-items-end w-full">
           {categories.map((cat) => {
             return (
               <CategoryLgBox
@@ -48,7 +48,6 @@ const Category = async () => {
                 title={cat.title}
                 desc={cat.desc}
                 imgSrc={cat.imgSrc}
-                imgWidth={cat.imgWidth}
                 styles={cat.styles}
                 href={cat.href}
               />

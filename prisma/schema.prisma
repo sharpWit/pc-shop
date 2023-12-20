@@ -80,7 +80,6 @@ model Category {
   subCategories SubCategory[]
   productGroup ProductGroup[]
   products    Product[]
-  sliders     Slider[]
 }
 
 model SubCategory {
@@ -90,7 +89,7 @@ model SubCategory {
   title       String
   desc        String?
   icon        String?
-  slug        String  @unique
+  slug        String  
   href        String   @unique
   category    Category   @relation(fields: [slug], references: [href])
   productGroup ProductGroup[]
@@ -104,8 +103,8 @@ model ProductGroup {
   title       String
   desc        String?
   icon        String?
-  slug        String   @unique
-  subSlug     String   @unique
+  slug        String   
+  subSlug     String   
   href        String   @unique
   category    Category @relation(fields: [slug], references: [href])
   subCategory SubCategory @relation(fields: [subSlug], references: [href])
@@ -125,36 +124,13 @@ model Product {
   isOffer     Boolean  @default(false)
   discount    Int?
   rate        Int?
-  slug        String   @unique
-  subSlug     String   @unique
-  groupTitle  String   @unique
-  brand       Brand    @relation(fields: [brandId], references: [id])
-  brandId     String
+  slug        String   
+  subSlug     String   
+  groupTitle  String   
   details     Json[]
   category    Category @relation(fields: [slug], references: [href])
   subCategory SubCategory @relation(fields: [subSlug], references: [href])
   productGroup ProductGroup @relation(fields: [groupTitle], references: [href])
-}
-
-model Brand {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  name        String 
-  title       String?
-  desc        String?
-  logo        String
-  slug        String
-  products    Product[]
-}
-
-model Slider {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  title       String
-  desc        String
-  img         String
-  slug        String
-  category    Category @relation(fields: [slug], references: [href])
 }
 
 model Order {
@@ -166,19 +142,6 @@ model Order {
   intent_id   String?  @unique
   user        User     @relation(fields: [userEmail], references: [email])
   userEmail   String
-}
-
-model Banner {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  title       String
-  desc        String
-  buttonText  String
-  imgSrc      String
-  imgWidth     Int
-  imgHeight    Int
-  discountDate Int
-  slug        String
 }
 
 model BannerContent {
@@ -194,35 +157,3 @@ model BannerContent {
   href        String
 }
 
-model Benefit {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  title       String 
-  imgSrc      String
-  imgWidth    Int
-  imgHeight   Int
-  desc String
-}
-model Social {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  name        String 
-  icon        String
-  href        String
-}
-model FooterLink {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  title       String   @unique 
-  href        String
-  icon        String
-  footerLinks FooterLinks[]
-}
-model FooterLinks {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  title       String 
-  text        String 
-  href        String
-  footerLink  FooterLink @relation(fields: [title], references: [title])
-}
