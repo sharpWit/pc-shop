@@ -29,7 +29,7 @@ const ProductPageActions: React.FC<Props> = ({ product }) => {
       : dispatch(favoriteActions.removeFromFavorite(product.id));
   }
   return (
-    <div className=" py-4 -mt-6 flex flex-col justify-evenly absolute top-0 right-0 md:static rounded-lg z-10">
+    <div className="py-4 -mt-6 flex flex-row lg:flex-col lg:justify-evenly lg:absolute lg:top-0 lg:right-0 md:static rounded-lg z-10">
       <div
         className="hover:text-rose-600 transition-colors px-2 md:px-6 py-3 "
         onClick={toggleFavoriteHandler}
