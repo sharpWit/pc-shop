@@ -120,9 +120,9 @@ const Breadcrumbs = () => {
   return (
     <nav
       aria-label="breadcrumbs"
-      className="font-nav max-w-screen-xl mr-0 ml-auto px-4 sm:px-6 lg:px-8 mb-6 "
+      className="font-nav max-w-screen-xl mr-0 ml-auto px-4 sm:px-6 lg:px-8 mb-6 text-sm "
     >
-      <ol className="flex items-center justify-start space-x-reverse p-2">
+      <ol className="flex flex-wrap items-center justify-start space-x-reverse p-2">
         <li className="mx-2">
           <Link href="/" className="text-gray-500 hover:text-gray-700">
             فروشگاه
@@ -134,7 +134,7 @@ const Breadcrumbs = () => {
             <span className="sm:hidden text-gray-500 px-2">/</span>
             <Link
               href={breadcrumb.href}
-              className="text-blue-500 hover:text-blue-700"
+              className="text-blue-500 hover:text-blue-700 leading-6"
             >
               {convertBreadcrumb(breadcrumb.breadcrumb)}
             </Link>
