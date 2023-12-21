@@ -1,11 +1,11 @@
 // Components //
-import ImageSection from "./ImageSection";
 import DetailsSection from "./DetailsSection";
 import Benefits from "@/components/benefits/Benefits";
 // import SimilarProducts from "./SimilarProducts";
 
 // Types //
 import { IProduct } from "@/types/products";
+import Images from "./Images";
 
 interface Props {
   product: IProduct;
@@ -17,18 +17,17 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
   //   .slice(0, 10);
 
   return (
-    <div className="flex flex-col">
-      <div className="w-full xl:max-w-[2100px] mx-auto">
-        <div className="flex flex-col md:flex-row flex-wrap md:flex-nowrap items-center md:items-start mt-8 relative">
-          <ImageSection imgArray={product.img} product={product} />
-          <DetailsSection product={product} />
-        </div>
-        <div className="border-2 my-8">
-          <Benefits />
-        </div>
-        {/* <SimilarProducts products={similarProductsList} /> */}
+    <section className="flex flex-col space-y-8 w-full p-4 overflow-hidden">
+      <div className="flex flex-col lg:flex-row lg:items-start gap-4 w-full max-h-full lg:max-h-[60vh]">
+        <Images product={product} />
+        <DetailsSection product={product} />
       </div>
-    </div>
+
+      <div className="mx-auto">
+        <Benefits />
+      </div>
+      {/* <SimilarProducts products={similarProductsList} /> */}
+    </section>
   );
 };
 

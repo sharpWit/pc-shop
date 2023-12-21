@@ -15,6 +15,15 @@ import { ShoppingBag, Plus, Minus } from "lucide-react";
 // Components //
 import { useToast } from "@/components/ui/toasts/use-toast";
 import ProductPrice from "@/components/products/ProductPrice";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card/Card";
+import { Button } from "@/components/ui/button";
+import { InputField } from "@/components/ui/form/InputField";
 
 // Types //
 import { IProduct } from "@/types/products";
@@ -66,36 +75,37 @@ const CallToAction: React.FC<Props> = ({ product }) => {
   }
 
   return (
-    <div className="flex flex-col items-center flex-grow sticky top-10 md:top-36 max-w-[350px] mt-8 rtl:mr-auto ltr:ml-auto xl:rtl:ml-2 px-6 py-4 sm:p-4 xl:p-6 border-2 shadow-lg">
-      <div className="flex flex-col w-full ">
-        <p className="text-lg">قیمت محصول</p>
-        <ProductPrice price={price} discount={discount} isLargeSize={true} />
-      </div>
-      <div className="flex items-center justify-between mt-6 cursor-pointer">
-        <div className="p-2" onClick={increment}>
-          <Plus />
+    <Card className="w-full md:w-1/2 mt-2">
+      <CardHeader>
+        <CardTitle>
+          <ProductPrice price={price} discount={discount} isLargeSize={true} />
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="flex items-center justify-center cursor-pointer">
+          <div className="p-2" onClick={increment}>
+            <Plus />
+          </div>
+          <InputField
+            className="inline-block w-[70px] rtl:pr-8 ltr:pl-7 py-2 mx-1 sm:mx-4 border-[1px] border-gray-400"
+            type="number"
+            min={1}
+            max={10}
+            value={counter}
+            onChange={onInputNumberChangeHandler}
+          />
+          <div onClick={decrement} className="p-2">
+            <Minus />
+          </div>
         </div>
-        <input
-          className="inline-block w-[70px] rtl:pr-8 ltr:pl-7 py-2 mx-1 sm:mx-4 border-[1px] border-gray-400"
-          type="number"
-          min={1}
-          max={10}
-          value={counter}
-          onChange={onInputNumberChangeHandler}
-        />
-        <div onClick={decrement} className="p-2">
-          <Minus />
-        </div>
-      </div>
-      <br />
-      <button
-        className="border-none bg-palette-primary/90 hover:bg-palette-primary/100 transition-colors duration-200 shadow-lg px-3 lg:px-8 py-4 text-palette-side flex items-center rounded-lg cursor-pointer  text-[12px] sm:text-base"
-        onClick={addToCartHandler}
-      >
-        <ShoppingBag />
-        اضافه به سبد خرید
-      </button>
-    </div>
+      </CardContent>
+      <CardFooter>
+        <Button onClick={addToCartHandler}>
+          <ShoppingBag className="ml-1" />
+          اضافه به سبد خرید
+        </Button>
+      </CardFooter>
+    </Card>
   );
 };
 

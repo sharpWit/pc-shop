@@ -1,0 +1,42 @@
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+.image-gallery-image {
+  max-inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 2/1;
+  object-fit: contain;
+}
+.image-gallery-content .image-gallery-slide .image-gallery-image {
+  max-height: 300px;
+  height: 100%;
+}
+
+.image-gallery-thumbnail {
+  .image-gallery-thumbnail-image {
+    max-inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    padding: 4px;
+  }
+
+  &.active,
+  &:focus {
+    border: 2px solid #ef7501;
+
+    @media (max-width: $ig-small-screen) {
+      border: 3px solid #ef7501;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      outline: none;
+      border: 2px solid #ef7501;
+
+      @media (max-width: $ig-small-screen) {
+        border: 2px solid #ef7501;
+      }
+    }
+  }
+}
