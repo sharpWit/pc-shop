@@ -1,20 +1,22 @@
+"use client";
+
 // Components //
+import Images from "./Images";
 import DetailsSection from "./DetailsSection";
+import SimilarProducts from "./SimilarProducts";
 import Benefits from "@/components/benefits/Benefits";
-// import SimilarProducts from "./SimilarProducts";
 
 // Types //
 import { IProduct } from "@/types/products";
-import Images from "./Images";
 
 interface Props {
   product: IProduct;
-  // products: IProduct[];
+  products: IProduct[];
 }
-const ProductDetails: React.FC<Props> = ({ product }) => {
-  // const similarProductsList = products
-  //   .filter((similarProduct) => similarProduct.id !== product.id)
-  //   .slice(0, 10);
+const ProductDetails: React.FC<Props> = ({ product, products }) => {
+  const similarProductsList = products
+    .filter((similarProduct) => similarProduct.id !== product.id)
+    .slice(0, 10);
 
   return (
     <section className="flex flex-col space-y-8 w-full p-4 overflow-hidden">
@@ -26,7 +28,10 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
       <div className="mx-auto">
         <Benefits />
       </div>
-      {/* <SimilarProducts products={similarProductsList} /> */}
+      <div>توضیحات محصول</div>
+      {similarProductsList.length > 1 ? (
+        <SimilarProducts products={similarProductsList} />
+      ) : null}
     </section>
   );
 };

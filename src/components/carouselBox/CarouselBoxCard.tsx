@@ -4,13 +4,7 @@ import Image from "next/image";
 
 // Components //
 import ProductPrice from "../products/ProductPrice";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card/Card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card/Card";
 
 // Types //
 import { IProduct } from "@/types/products";
@@ -22,7 +16,7 @@ interface Props {
 
 const CarouselBoxCard = ({ product }: Props) => {
   return (
-    <Card className="ml-2 backdrop-filter backdrop-blur-[10px] overflow-hidden">
+    <Card className="flex-1 ml-2 backdrop-filter backdrop-blur-[10px] overflow-hidden">
       <Link
         href={`/${product.slug}/${product.subSlug}/${product.groupTitle}/${product.enTitle}`}
       >
