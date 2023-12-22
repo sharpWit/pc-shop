@@ -8,6 +8,7 @@ import Benefits from "@/components/benefits/Benefits";
 
 // Types //
 import { IProduct } from "@/types/products";
+import ProductContent from "./ProductContent";
 
 interface Props {
   product: IProduct;
@@ -28,7 +29,7 @@ const ProductDetails: React.FC<Props> = ({ product, products }) => {
       <div className="mx-auto">
         <Benefits />
       </div>
-      <div>توضیحات محصول</div>
+      <ProductContent />
       {similarProductsList.length > 1 ? (
         <SimilarProducts products={similarProductsList} />
       ) : null}
