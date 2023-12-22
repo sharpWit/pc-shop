@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 // Components //
-import Loading from "@/app/loading";
+import { Skeleton } from "./skeleton/Skeleton";
 
 // Hooks //
 import useCategories from "@/hooks/useCategories";
@@ -94,7 +94,7 @@ const Breadcrumbs = () => {
     productGroupsLoading ||
     productsLoading
   ) {
-    return <Loading />;
+    return <Skeleton className="w-[100px] h-[20px] rounded-full" />;
   }
 
   if (
