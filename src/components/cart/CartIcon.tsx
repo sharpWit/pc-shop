@@ -1,8 +1,5 @@
 "use client";
 
-// Cores //
-import Link from "next/link";
-
 // Icons //
 import { ShoppingCart } from "lucide-react";
 
@@ -10,14 +7,7 @@ import { ShoppingCart } from "lucide-react";
 import { useSelector } from "react-redux";
 
 // Components //
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet/Sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet/Sheet";
 import CartBox from "./CartBox";
 
 // Types //

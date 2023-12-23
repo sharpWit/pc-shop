@@ -4,7 +4,7 @@
 import Link from "next/link";
 
 // Instruments //
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 // Hooks //
 import { useExchangeRateGBPToIRR } from "@/hooks/useExchangeRateGBPToIRR";
@@ -29,8 +29,6 @@ import { ICartRootState } from "@/types/cart";
 import { IUserInfoRootState } from "@/types/user";
 
 const CartBox = () => {
-  const dispatch = useDispatch();
-
   const cartItemQuantity = useSelector(
     (state: ICartRootState) => state.cart.totalQuantity
   );

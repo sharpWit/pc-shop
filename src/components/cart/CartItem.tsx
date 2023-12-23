@@ -1,20 +1,25 @@
-import { IProduct } from "@/types/products";
-import { FC, useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card/Card";
-import Image from "next/image";
-import { AspectRatio } from "../ui/AspectRetio";
+// Cores //
 import Link from "next/link";
-import ProductPrice from "../products/ProductPrice";
+import Image from "next/image";
+import { FC, useState } from "react";
+
+// Instruments //
 import { useDispatch, useSelector } from "react-redux";
-import { ICartRootState } from "@/types/cart";
-import { cartActions } from "@/store/cart-slice";
+
+// Icons //
 import { Plus, Minus, Trash2 } from "lucide-react";
+
+// State //
+import { cartActions } from "@/store/cart-slice";
+
+// Components //
+import { AspectRatio } from "../ui/AspectRetio";
+import ProductPrice from "../products/ProductPrice";
+import { Card, CardContent, CardFooter, CardTitle } from "../ui/card/Card";
+
+// Types //
+import { IProduct } from "@/types/products";
+import { ICartRootState } from "@/types/cart";
 
 interface Props {
   product: IProduct;

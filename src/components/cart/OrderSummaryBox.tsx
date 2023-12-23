@@ -2,12 +2,17 @@
 
 // Cores //
 import React from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // Instruments //
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+// State //
+import { cartActions } from "@/store/cart-slice";
 
 // Components //
+import { Button } from "../ui/button";
+import { useToast } from "../ui/toasts/use-toast";
 import ProductPrice from "@/components/products/ProductPrice";
 
 // Utilities //
@@ -17,12 +22,27 @@ import { changeNumbersFormatEnToFa } from "@/utils/changeNumbersFormatEnToFa";
 import { ICartRootState } from "@/types/cart";
 
 const OrderSummaryBox = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const { toast } = useToast();
+
   const totalAmount = useSelector(
     (state: ICartRootState) => state.cart.totalAmount
   );
   const totalQuantity = useSelector(
     (state: ICartRootState) => state.cart.totalQuantity
   );
+
+  function handleOrder() {
+    dispatch(cartActions.clearCart());
+
+    toast({
+      variant: "success",
+      title: "سفارش شما با موفقیت انجام شد",
+    });
+
+    router.push("/");
+  }
 
   return (
     <div className="px-4 font-main">
@@ -45,12 +65,12 @@ const OrderSummaryBox = () => {
               <ProductPrice price={totalAmount} />
             </div>
           </div>
-          <Link
-            href="/"
+          <Button
+            onClick={() => handleOrder()}
             className="block bg-primary md:mt-8 py-3 rounded-lg text-primary-foreground text-center shadow-lg"
           >
             سفارش
-          </Link>
+          </Button>
         </div>
       ) : (
         <p className="text-muted-foreground text-lg mx-auto mt-12">
