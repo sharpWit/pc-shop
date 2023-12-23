@@ -97,7 +97,7 @@ const CartItem: FC<Props> = ({ product }) => {
       </CardContent>
 
       <CardFooter>
-        <p>قیمت کل</p>
+        <p className="p-1">قیمت کل:</p>
         <ProductPrice
           price={product.price * counter!}
           discount={product.discount}

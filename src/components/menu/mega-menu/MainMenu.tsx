@@ -129,42 +129,42 @@ const MainMenu = () => {
                               </Link>
                             ) : null}
                           </NavigationMenuTrigger>
-                          <NavigationMenuContent>
-                            <div className="grid md:grid-cols-2 gap-3 p-4 min-h-screen w-[400px] md:w-[500px] lg:w-[600px]">
-                              {subCategories
-                                ?.filter((subCat) => subCat.slug === cat.href)
-                                .map((filteredSubCat) => (
-                                  <div key={filteredSubCat.id}>
-                                    <NavigationMenuLink
-                                      href={`/${cat.href}/${filteredSubCat.href}`}
-                                      className="flex flex-col justify-center select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground relative"
-                                    >
-                                      <h3 className="self-center mb-1 text-sm font-medium leading-none ">
-                                        {filteredSubCat.name}
-                                      </h3>
-                                      <ul className="flex flex-col ">
-                                        {productGroups?.map(
-                                          (groupName) =>
-                                            groupName.subSlug ===
-                                              filteredSubCat.href && (
-                                              <li
-                                                key={groupName.id}
-                                                className=" m-1 py-1 px-2 space-y-1 bg-card rounded-md hover:bg-primary/40 transition-colors"
-                                              >
-                                                <Link
-                                                  href={`/${cat.href}/${filteredSubCat.href}/${groupName.href}`}
-                                                  className="block w-full h-full text-sm leading-loose text-muted-foreground hover:text-foreground"
-                                                >
-                                                  {groupName.name}
-                                                </Link>
-                                              </li>
-                                            )
-                                        )}
-                                      </ul>
-                                    </NavigationMenuLink>
-                                  </div>
-                                ))}
-                            </div>
+                          <NavigationMenuContent className="grid md:grid-cols-2 gap-3 p-4 min-h-screen w-[400px] md:w-[500px] lg:w-[600px]">
+                            {subCategories
+                              ?.filter((subCat) => subCat.slug === cat.href)
+                              .map((filteredSubCat) => (
+                                <div
+                                  key={filteredSubCat.id}
+                                  className="flex flex-col select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground relative"
+                                >
+                                  <Link
+                                    href={`/${cat.href}/${filteredSubCat.href}`}
+                                  >
+                                    <h3 className="self-center mb-1 text-sm font-medium leading-none ">
+                                      {filteredSubCat.name}
+                                    </h3>
+                                  </Link>
+                                  <ul className="flex flex-col ">
+                                    {productGroups?.map(
+                                      (groupName) =>
+                                        groupName.subSlug ===
+                                          filteredSubCat.href && (
+                                          <li
+                                            key={groupName.id}
+                                            className=" m-1 py-1 px-2 space-y-1 bg-card rounded-md hover:bg-primary/40 transition-colors"
+                                          >
+                                            <Link
+                                              href={`/${cat.href}/${filteredSubCat.href}/${groupName.href}`}
+                                              className="block w-full h-full text-sm leading-loose text-muted-foreground hover:text-foreground"
+                                            >
+                                              {groupName.name}
+                                            </Link>
+                                          </li>
+                                        )
+                                    )}
+                                  </ul>
+                                </div>
+                              ))}
                           </NavigationMenuContent>
                         </NavigationMenuItem>
                       ))
@@ -199,48 +199,3 @@ const MainMenu = () => {
 };
 
 export default MainMenu;
-
-// <ListItem
-
-//   key={filteredSubCat.id}
-//   // onClick={() =>
-//   //   router.push(
-//   //     `${cat.href}/${filteredSubCat.href}`
-//   //   )
-//   // }
-//   // onClick={(e) => {
-//   //   e.preventDefault(); // Prevent the default behavior
-//   //   router.push(
-//   //     `${cat.href}/${filteredSubCat.href}`
-//   //   );
-//   // }}
-//   title={filteredSubCat.name}
-//   href={`${cat.href}/${filteredSubCat.href}`}
-// >
-//   {React.createElement(
-//     iconComponents[
-//       filteredSubCat.icon as keyof typeof iconComponents
-//     ],
-//     {
-//       className:
-//         "absolute top-[4px] right-[8px] p-1",
-//     }
-//   )}
-// {productGroups?.map(
-//   (groupName) =>
-//     groupName.subSlug ===
-//       filteredSubCat.href && (
-//       <li
-//         key={groupName.id}
-//         className=" m-1 py-1 px-2 space-y-1 bg-card rounded-md hover:bg-primary/40 transition-colors"
-//       >
-//         <Link
-//           href={`${cat.href}/${filteredSubCat.href}/${groupName.href}`}
-//           className="block w-full h-full text-sm leading-loose text-muted-foreground hover:text-foreground"
-//         >
-//           {groupName.name}
-//         </Link>
-//       </li>
-//     )
-// )}
-// </ListItem>
