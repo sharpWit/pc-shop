@@ -1,13 +1,17 @@
 // Cores //
 import React from "react";
+import dynamic from "next/dynamic";
 
 // Components //
 import Logo from "./logo/Logo";
 import Menu from "../menu/Menu";
 import SearchBar from "../search/SearchBar";
-import LoginBtn from "../user/LoginBtn";
 import CartIcon from "../cart/CartIcon";
 import { ModeToggle } from "../theme/theme-toggle";
+
+const UserBox = dynamic(() => import("@/components/user/User"), {
+  ssr: false,
+});
 
 const Header = () => {
   return (
@@ -22,12 +26,8 @@ const Header = () => {
           </div>
 
           <div className=" flex items-center justify-between">
-            <div>
-              <LoginBtn />
-            </div>
-            <div className="">
-              <CartIcon />
-            </div>
+            <UserBox />
+            <CartIcon />
           </div>
         </div>
 

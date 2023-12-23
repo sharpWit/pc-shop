@@ -8,9 +8,9 @@ import cartSliceReducer from "./cart-slice";
 import favoriteReducer from "./favorite-slice";
 import SortedProductsListReducer from "./sortedProductList-slice";
 import newestProductReducer from "./newestProduct-slice";
+import cartUiReducer from "./cartUI-slice";
+import userInfoReducer from "./user-slice";
 // import sideNavBarReducer from "./sideNavBar-slice";
-// import cartUiReducer from "./cartUI-slice";
-// import userInfoReducer from "./user-slice";
 
 const store = configureStore({
   reducer: {
@@ -19,9 +19,9 @@ const store = configureStore({
     favorite: favoriteReducer,
     sortedProductsList: SortedProductsListReducer,
     newestProductsList: newestProductReducer,
+    cartUi: cartUiReducer,
+    userInfo: userInfoReducer,
     // sideNavBar: sideNavBarReducer,
-    // cartUi: cartUiReducer,
-    // userInfo: userInfoReducer,
   },
 
   // middleware: (getDefaultMiddleware) =>

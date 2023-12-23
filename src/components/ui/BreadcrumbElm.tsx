@@ -120,7 +120,7 @@ const Breadcrumbs = () => {
   return (
     <nav
       aria-label="breadcrumbs"
-      className="font-nav max-w-screen-xl mr-0 ml-auto px-4 sm:px-6 lg:px-8 mb-6 text-sm "
+      className="font-nav max-w-screen-xl mr-0 ml-auto px-4 sm:px-6 lg:px-8 my-4 text-sm "
     >
       <ol className="flex flex-wrap items-center justify-start space-x-reverse p-2">
         <li className="mx-2">
