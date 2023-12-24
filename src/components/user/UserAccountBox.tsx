@@ -2,6 +2,7 @@
 
 // Cores //
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // Instruments //
 import jsCookie from "js-cookie";
@@ -12,27 +13,36 @@ import { User, LogOut } from "lucide-react";
 
 // State //
 import { userInfoActions } from "@/store/user-slice";
+import { cartActions } from "@/store/cart-slice";
+
+// Components //
+import { Button } from "../ui/button";
 
 const UserAccountBox = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   function onLogoutClickHandler() {
     dispatch(userInfoActions.userLogout());
     jsCookie.remove("userInfo");
+    dispatch(cartActions.clearCart());
+    router.push("/");
   }
   return (
     <div>
       <ul>
         <li className="my-1 py-1">
           <Link href={"/user"} className="flex items-center hover:text-primary">
-            <User />
-            <span className="mr-1">پنل کاربری</span>
+            <Button variant={"secondary"}>
+              <User />
+              <span className="mr-1">پنل کاربری</span>
+            </Button>
           </Link>
         </li>
         <li className="my-1 py-1" onClick={onLogoutClickHandler}>
-          <Link href={`/`} className="flex items-center hover:text-primary">
+          <Button variant={"ghost"}>
             <LogOut />
             <span className="mr-1">خروج</span>
-          </Link>
+          </Button>
         </li>
       </ul>
     </div>

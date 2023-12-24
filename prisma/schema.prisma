@@ -39,7 +39,7 @@ model Session {
 
 model User {
   id            String    @id @default(cuid())
-  fristName     String?
+  firstName     String?
   lastName      String?
   username      String    @unique
   email         String    @unique
@@ -47,14 +47,15 @@ model User {
   password      String
   image         String?
   address       String?
-  phoneNum      Int?
-  postalCode    Int?
+  phoneNum      String?
+  postalCode    String?
   createAt      DateTime  @default(now())
   updateAt      DateTime  @updatedAt
   isAdmin       Boolean   @default(false)
   accounts      Account[]
   sessions      Session[]
   Order         Order[]
+  Cart          Cart[]
 }
 
 model VerificationToken {
@@ -73,8 +74,8 @@ model Category {
   desc        String?
   icon        String?
   imgSrc      String
-  imgWidth    Int
-  imgHeight   Int
+  imgWidth    String
+  imgHeight   String
   href        String   @unique
   styles      Json?
   subCategories SubCategory[]
@@ -131,6 +132,7 @@ model Product {
   category    Category @relation(fields: [slug], references: [href])
   subCategory SubCategory @relation(fields: [subSlug], references: [href])
   productGroup ProductGroup @relation(fields: [groupTitle], references: [href])
+  cartItems  Cart[] @relation("CartItem")
 }
 
 model Order {
@@ -151,9 +153,23 @@ model BannerContent {
   description String
   buttonText  String
   imgSrc      String
-  imgWidth    Int
-  imgHeight   Int
+  imgWidth    String
+  imgHeight   String
   numberOfDiscountDate Int 
   href        String
 }
+
+model Cart {
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+  modified_at   DateTime?
+  deleted_at    DateTime?
+  user          User     @relation(fields: [userID], references: [id])
+  userID        String
+  items         Product[] @relation("CartItem")
+  status        String
+  totalQuantity Int
+  totalAmount   Int
+}
+
 

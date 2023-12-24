@@ -1,0 +1,1449 @@
+// Instruments //
+const prisma = new PrismaClient();
+import { PrismaClient } from "@prisma/client";
+import { fakerFA as faker } from "@faker-js/faker";
+
+//? Create MAIN
+async function main() {
+  try {
+    //! Seed users
+    const users = Array.from({ length: 10 }, () => ({
+      fristName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
+      username: faker.internet.userName(),
+      email: faker.internet.email(),
+      emailVerified: null,
+      password: faker.internet.password(),
+      image: "",
+      address: faker.location.streetAddress(),
+      phoneNum: Number(faker.phone.number()),
+      postalCode: Number(faker.location.zipCode()),
+      createAt: faker.date.past(),
+      isAdmin: false,
+    }));
+
+    const seededUsers = await prisma.user.createMany({
+      data: users,
+    });
+
+    console.log("Seeded Users: ", seededUsers);
+
+    //! Seed categories
+    const computer = await prisma.category.upsert({
+      where: { href: "computer" },
+      update: {},
+      create: {
+        name: "کامپیوتر",
+        title: "کامپیوتر",
+        desc: "کامپیوتر و قطعات",
+        icon: "Computer",
+        imgSrc: "/images/categories/components.webp",
+        imgWidth: 600,
+        imgHeight: 0,
+        href: "computer",
+        styles: {
+          order: "1",
+          display: "flex",
+          alignItems: "center",
+          gridRowStart: "1",
+          paddingBlock: "2rem",
+          flexDirection: "column",
+          paddingInline: "1rem",
+          justifyContent: "space-between",
+          backgroundColor: "#EBE76C",
+          gridColumnStart: "span 3",
+        },
+      },
+    });
+
+    const network = await prisma.category.upsert({
+      where: { href: "computer" },
+      update: {},
+      create: {
+        name: "تجهیزات شبکه",
+        title: "تجهیزات شبکه",
+        desc: "انواع تجهیزات پسیو و اکتیو شبکه",
+        icon: "network",
+        imgSrc: "/images/categories/network.png",
+        imgWidth: 400,
+        imgHeight: 0,
+        href: "Network",
+        styles: {
+          order: "3",
+          display: "flex",
+          alignItems: "center",
+          marginRight: "16px",
+          gridRowStart: "2",
+          paddingBlock: "2rem",
+          flexDirection: "column",
+          paddingInline: "1rem",
+          justifyContent: "space-between",
+          backgroundColor: "#ED7B7B",
+          gridColumnStart: "span 2",
+        },
+      },
+    });
+
+    const peripherals = await prisma.category.upsert({
+      where: { href: "peripherals" },
+      update: {},
+      create: {
+        name: "لوازم جانبی",
+        title: "لوازم جانبی",
+        desc: "لوازم جانبی کامپیوتر",
+        icon: "MonitorSpeaker",
+        imgSrc: "/images/categories/keyboard-mouse.webp",
+        imgWidth: 600,
+        imgHeight: 0,
+        href: "peripherals",
+        styles: {
+          order: "2",
+          display: "flex",
+          alignItems: "center",
+          gridColumn: "4/span3",
+          paddingBlock: "2rem",
+          flexDirection: "column",
+          paddingInline: "1rem",
+          justifyContent: "space-between",
+          backgroundColor: "#90b376",
+        },
+      },
+    });
+
+    const audioVideo = await prisma.category.upsert({
+      where: { href: "audio-video" },
+      update: {},
+      create: {
+        name: "تجهیزات صدا و تصویر",
+        title: "تجهیزات صدا و تصویر",
+        desc: "تجهیزات صدا و تصویر حرفه‌ای",
+        icon: "Mic",
+        imgSrc: "/images/categories/sound.png",
+        imgWidth: 400,
+        imgHeight: 0,
+        href: "audio-video",
+        styles: {
+          order: "4",
+          display: "flex",
+          alignItems: "center",
+          gridColEnd: "4",
+          paddingBlock: "2rem",
+          flexDirection: "column",
+          paddingInline: "1rem",
+          justifyContent: "space-between",
+          backgroundColor: "#836096",
+          gridColumnStart: "span 2",
+        },
+      },
+    });
+
+    const adaptersCables = await prisma.category.upsert({
+      where: { href: "adapters-cables" },
+      update: {},
+      create: {
+        name: "مبدل | کابل",
+        title: "مبدل | کابل",
+        desc: "انواع تبدیل و کابل کامپیوتر",
+        icon: "PlugZap",
+        imgSrc: "/images/categories/adapter.webp",
+        imgWidth: 400,
+        imgHeight: 0,
+        href: "adapters-cables",
+        styles: {
+          order: "5",
+          display: "flex",
+          alignItems: "center",
+          gridColumn: "5 / span 2",
+          paddingBlock: "2rem",
+          flexDirection: "column",
+          paddingInline: "1rem",
+          justifyContent: "space-between",
+          backgroundColor: "#769fb3",
+        },
+      },
+    });
+
+    console.log(
+      "Seeded Categories: ",
+      computer,
+      network,
+      peripherals,
+      audioVideo,
+      adaptersCables
+    );
+  } catch (error) {
+    console.error("Error seeding data:", error);
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+//? Call MAIN
+main()
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
+
+
+
+//////////////////////////////////////
+
+
+
+    //! Products
+    const pro1 = await prisma.product.upsert({
+      where: { enTitle: "se90-logitech-video" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "ویدئوکنفرانس لاجیتک se90",
+        enTitle: "se90-logitech-video",
+        desc: "ویدئوکنفرانس لاجیتک se90",
+        img: ["/images/products/voice-&-video.png"],
+        price: 1800.0,
+        isOffer: false,
+        discount: null,
+        rate: 3,
+        slug: "audio-video",
+        subSlug: "video-equipment",
+        groupTitle: "video-conference",
+        details: [],
+      },
+    });
+    const pro2 = await prisma.product.upsert({
+      where: { enTitle: "logitech-mouse" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "ماوس لاجیتک",
+        enTitle: "logitech-mouse",
+        desc: "ماوس لاجیتک",
+        img: ["/images/products/razer-basilisk-v3.png"],
+        price: 600.0,
+        isOffer: true,
+        discount: 15,
+        rate: 4,
+        slug: "peripherals",
+        subSlug: "computer-peripherals",
+        groupTitle: "mouse",
+        details: [],
+      },
+    });
+    const pro3 = await prisma.product.upsert({
+      where: { enTitle: "razer-mouse" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "ماوس ریزر",
+        enTitle: "razer-mouse",
+        desc: "ماوس ریزر",
+        img: ["/images/products/asus-rog.png"],
+        price: 560.0,
+        isOffer: true,
+        discount: 10,
+        rate: 3,
+        slug: "peripherals",
+        subSlug: "computer-peripherals",
+        groupTitle: "mouse",
+        details: [],
+      },
+    });
+    const pro4 = await prisma.product.upsert({
+      where: { enTitle: "asus-b650e-mainboard" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "مادربرد ایسوس b6502",
+        enTitle: "asus-b650e-mainboard",
+        desc: "مادربرد ایسوس b6502",
+        img: ["/images/products/pc-components.webp"],
+        price: 1100.0,
+        isOffer: false,
+        discount: null,
+        rate: 4,
+        slug: "computer",
+        subSlug: "components",
+        groupTitle: "mainboard",
+        details: [],
+      },
+    });
+    const pro5 = await prisma.product.upsert({
+      where: { enTitle: "tplink-8989-router" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "روتر تی پی لینک tp8989",
+        enTitle: "tplink-8989-router",
+        desc: "روتر تی پی لینک tp8989",
+        img: ["/images/products/TP-Link.webp"],
+        price: 480.0,
+        isOffer: true,
+        discount: 8,
+        rate: 4,
+        slug: "network",
+        subSlug: "network-active",
+        groupTitle: "router",
+        details: [],
+      },
+    });
+    const pro6 = await prisma.product.upsert({
+      where: { enTitle: "TP-Link-518B-RJ-Tool" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "آچار شبکه تی پی لینک 518b",
+        enTitle: "TP-Link-518B-RJ-Tool",
+        desc: "آچار شبکه تی پی لینک 518b",
+        img: ["/images/products/punch.webp"],
+        price: 80.0,
+        isOffer: true,
+        discount: 6,
+        rate: 5,
+        slug: "network",
+        subSlug: "network-passive",
+        groupTitle: "network-tools",
+        details: [],
+      },
+    });
+    const pro7 = await prisma.product.upsert({
+      where: { enTitle: "intel-cpu-gen10" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "پردازنده نسل ده اینتل",
+        enTitle: "intel-cpu-gen10",
+        desc: "پردازنده نسل ده اینتل",
+        img: ["/images/products/intel-cpu.png"],
+        price: 1200.0,
+        isOffer: false,
+        discount: null,
+        rate: 4,
+        slug: "computer",
+        subSlug: "components",
+        groupTitle: "cpu",
+        details: [],
+      },
+    });
+    const pro8 = await prisma.product.upsert({
+      where: { enTitle: "samsung-ssd-s900" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "اس اس دی سامسونگ s900",
+        enTitle: "samsung-ssd-s900",
+        desc: "اس اس دی سامسونگ s900",
+        img: [
+          "/images/products/samsung-ssd.jpg",
+          "/images/products/970pro-plus.webp",
+          "/images/products/970pro-plus1.webp",
+          "/images/products/970pro-plus2.webp",
+        ],
+        price: 980.0,
+        isOffer: false,
+        discount: null,
+        rate: 5,
+        slug: "peripherals",
+        subSlug: "storage",
+        groupTitle: "ssd",
+        details: [],
+      },
+    });
+    const pro9 = await prisma.product.upsert({
+      where: { enTitle: "samsung-980-pro" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "اس اس دی سامسونگ 980 pro",
+        enTitle: "samsung-980-pro",
+        desc: "اس اس دی سامسونگ 980 pro",
+        img: ["/images/products/samsung-ssd.png"],
+        price: 890.0,
+        isOffer: true,
+        discount: 6,
+        rate: 4,
+        slug: "peripherals",
+        subSlug: "storage",
+        groupTitle: "ssd",
+        details: [],
+      },
+    });
+    const pro10 = await prisma.product.upsert({
+      where: { enTitle: "logitech-b300-keyboard" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "کیبورد لاجیتک b300",
+        enTitle: "logitech-b300-keyboard",
+        desc: "کیبورد لاجیتک b300",
+        img: ["/images/products/keyboard.webp"],
+        price: 340.0,
+        isOffer: false,
+        discount: null,
+        rate: 4,
+        slug: "peripherals",
+        subSlug: "computer-peripherals",
+        groupTitle: "keyboard",
+        details: [],
+      },
+    });
+    const pro11 = await prisma.product.upsert({
+      where: { enTitle: "notry-speaker-800w" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "اسپیکر نوتری 800 وات",
+        enTitle: "notry-speaker-800w",
+        desc: "اسپیکر نوتری 500 وات",
+        img: ["/images/products/speaker-1.jpg"],
+        price: 250.0,
+        isOffer: true,
+        discount: 7,
+        rate: 4,
+        slug: "peripherals",
+        subSlug: "computer-peripherals",
+        groupTitle: "speaker",
+        details: [],
+      },
+    });
+    const pro12 = await prisma.product.upsert({
+      where: { enTitle: "notry-speaker-500w" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "اسپیکر نوتری 500 وات",
+        enTitle: "notry-speaker-500w",
+        desc: "اسپیکر نوتری 500 وات",
+        img: ["/images/products/speaker.jpg"],
+        price: 140.0,
+        isOffer: false,
+        discount: null,
+        rate: 3,
+        slug: "peripherals",
+        subSlug: "computer-peripherals",
+        groupTitle: "speaker",
+        details: [],
+      },
+    });
+    const pro13 = await prisma.product.upsert({
+      where: { enTitle: "wd-hdd-4tb" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "هارد وسترن دیجیتال آبی 4 ترابایت",
+        enTitle: "wd-hdd-4tb",
+        desc: "هارد وسترن دیجیتال آبی 4 ترابایت",
+        img: ["/images/products/wd-hdd-4tb.jpg"],
+        price: 340.0,
+        isOffer: false,
+        discount: null,
+        rate: null,
+        slug: "peripherals",
+        subSlug: "storage",
+        groupTitle: "hdd",
+        details: [],
+      },
+    });
+    const pro14 = await prisma.product.upsert({
+      where: { enTitle: "graphics-card-rx580" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "کارت گرافیک rx580",
+        enTitle: "graphics-card-rx580",
+        desc: "کارت گرافیک rx580",
+        img: ["/images/products/graphics-card.jpg"],
+        price: 900.0,
+        isOffer: false,
+        discount: null,
+        rate: 4,
+        slug: "computer",
+        subSlug: "components",
+        groupTitle: "gpu",
+        details: [],
+      },
+    });
+    const pro15 = await prisma.product.upsert({
+      where: { enTitle: "ready-pc-gaming" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "کیس آماده گیمینگ",
+        enTitle: "ready-pc-gaming",
+        desc: "کابل usb اوریکو",
+        img: ["/images/products/ready-pc.jpg"],
+        price: 3200.0,
+        isOffer: false,
+        discount: null,
+        rate: null,
+        slug: "computer",
+        subSlug: "ready-pc",
+        groupTitle: "assembled-pc",
+        details: [],
+      },
+    });
+    const pro16 = await prisma.product.upsert({
+      where: { enTitle: "g-skill-32gb-ram" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "رم جی اسکیل 32 گیگابایت",
+        enTitle: "g-skill-32gb-ram",
+        desc: "رم جی اسکیل 32 گیگابایت",
+        img: ["/images/products/ram.jpg"],
+        price: 1150.0,
+        isOffer: false,
+        discount: null,
+        rate: 4,
+        slug: "computer",
+        subSlug: "components",
+        groupTitle: "ram",
+        details: [],
+      },
+    });
+    const pro17 = await prisma.product.upsert({
+      where: { enTitle: "orico-mobile-charger" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "شارژر موبایل اوریکو",
+        enTitle: "orico-mobile-charger",
+        desc: "شارژر موبایل اوریکو",
+        img: ["/images/products/mobile-charger.webp"],
+        price: 48.0,
+        isOffer: true,
+        discount: 3,
+        rate: null,
+        slug: "peripherals",
+        subSlug: "mobile-accessories",
+        groupTitle: "charger",
+        details: [],
+      },
+    });
+    const pro18 = await prisma.product.upsert({
+      where: { enTitle: "TP-Link-TL-SG1016D-16-Port-Gigabit-Switch" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "سوئیچ رکمونت تی پی لینک TL-SG1016D",
+        enTitle: "TP-Link-TL-SG1016D-16-Port-Gigabit-Switch",
+        desc: "سوئیچ رکمونت تی پی لینک TL-SG1016D",
+        img: ["/images/products/tplink-switch.webp"],
+        price: 230.0,
+        isOffer: true,
+        discount: 5,
+        rate: 4,
+        slug: "network",
+        subSlug: "network-active",
+        groupTitle: "switch",
+        details: [],
+      },
+    });
+    const pro19 = await prisma.product.upsert({
+      where: { enTitle: "legrand-cat6-cable" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "کابل cat6 لگراند",
+        enTitle: "legrand-cat6-cable",
+        desc: "کابل cat6 لگراند",
+        img: ["/images/products/lan-cable.jpeg"],
+        price: 53.0,
+        isOffer: false,
+        discount: null,
+        rate: 3,
+        slug: "network",
+        subSlug: "network-passive",
+        groupTitle: "network-cables",
+        details: [],
+      },
+    });
+    const pro20 = await prisma.product.upsert({
+      where: { enTitle: "Electro-Voice-PL44-microphone" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "میکروفون داینامیک Electro PL44",
+        enTitle: "Electro-Voice-PL44-microphone",
+        desc: "میکروفون داینامیک Electro PL44",
+        img: ["/images/products/microphone.webp"],
+        price: 530.0,
+        isOffer: false,
+        discount: null,
+        rate: 4,
+        slug: "audio-video",
+        subSlug: "sound-equipment",
+        groupTitle: "microphone",
+        details: [],
+      },
+    });
+    const pro21 = await prisma.product.upsert({
+      where: { enTitle: "a4tech-gaming-keyboard" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "کیبورد گیمینگ a4tech",
+        enTitle: "a4tech-gaming-keyboard",
+        desc: "کیبورد گیمینگ a4tech",
+        img: [
+          "/images/products/keyboard.png",
+          "/images/products/a4tech-keyboard.jpg",
+        ],
+        price: 250.0,
+        isOffer: true,
+        discount: 8,
+        rate: 3,
+        slug: "peripherals",
+        subSlug: "computer-peripherals",
+        groupTitle: "keyboard",
+        details: [],
+      },
+    });
+    const pro22 = await prisma.product.upsert({
+      where: { enTitle: "ADATA-SU650" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "اس اس دی ای دیتا 512 گیگابایت ADATA SU650",
+        enTitle: "ADATA-SU650",
+        desc: "اس اس دی ای دیتا 512 گیگابایت ADATA SU650",
+        img: [
+          "/images/products/ADATA SU650.jpg",
+          "/images/products/ADATA SU650-2.jpg",
+          "/images/products/ADATA SU650-3.jpg",
+          "",
+        ],
+        price: 430.0,
+        isOffer: false,
+        discount: null,
+        rate: 3,
+        slug: "peripherals",
+        subSlug: "storage",
+        groupTitle: "ssd",
+        details: [],
+      },
+    });
+    const pro23 = await prisma.product.upsert({
+      where: { enTitle: "hdmi-v2-4k" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "مبدل hdmi ورژن 2",
+        enTitle: "hdmi-v2-4k",
+        desc: "مبدل hdmi ورژن 2",
+        img: ["/images/products/hdmi.jpg"],
+        price: 55.0,
+        isOffer: true,
+        discount: 3,
+        rate: 3,
+        slug: "adapters-cables",
+        subSlug: "adapters",
+        groupTitle: "hdmi-adapters",
+        details: [],
+      },
+    });
+    const pro24 = await prisma.product.upsert({
+      where: { enTitle: "orico-usb-adapter" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "مبدل usb اوریکو",
+        enTitle: "orico-usb-adapter",
+        desc: "مبدل usb اوریکو",
+        img: ["/images/products/usb.jpg"],
+        price: 33.0,
+        isOffer: true,
+        discount: 4,
+        rate: 4,
+        slug: "adapters-cables",
+        subSlug: "adapters",
+        groupTitle: "usb-adapter",
+        details: [],
+      },
+    });
+    const pro25 = await prisma.product.upsert({
+      where: { enTitle: "orico-hdmi-cable" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "کابل hdmi اوریکو b16",
+        enTitle: "orico-hdmi-cable",
+        desc: "کابل hdmi اوریکو b16",
+        img: ["/images/products/hdmi-cable.webp"],
+        price: 135.0,
+        isOffer: true,
+        discount: 5,
+        rate: 3,
+        slug: "adapters-cables",
+        subSlug: "cables",
+        groupTitle: "hdmi-cable",
+        details: [],
+      },
+    });
+    const pro26 = await prisma.product.upsert({
+      where: { enTitle: "orico-usb-cable" },
+      update: {},
+      create: {
+        modified_at: null,
+        deleted_at: null,
+        title: "کابل usb اوریکو",
+        enTitle: "orico-usb-cable",
+        desc: "کابل usb اوریکو",
+        img: ["/images/products/usb-cable.webp"],
+        price: 35.0,
+        isOffer: false,
+        discount: null,
+        rate: 3,
+        slug: "adapters-cables",
+        subSlug: "cables",
+        groupTitle: "usb-cable",
+        details: [],
+      },
+    });
+    const products = [
+      pro1,
+      pro2,
+      pro3,
+      pro4,
+      pro5,
+      pro6,
+      pro7,
+      pro8,
+      pro9,
+      pro10,
+      pro11,
+      pro12,
+      pro13,
+      pro14,
+      pro15,
+      pro16,
+      pro17,
+      pro18,
+      pro19,
+      pro20,
+      pro21,
+      pro22,
+      pro23,
+      pro24,
+      pro25,
+      pro26,
+    ];
+
+    // const seededProducts = await prisma.product.createMany({
+    //   data: products,
+    // });
+
+    console.log("Seeded Products: ", products);
+
+
+
+
+    ////////////////////////////////////////////////////
+
+
+
+    // Instruments //
+import { PrismaClient } from "@prisma/client";
+import { fakerFA as faker } from "@faker-js/faker";
+
+//? Instance of PRISMA
+const prisma = new PrismaClient();
+
+//? Create MAIN
+async function main() {
+  try {
+    //! Seed users
+    const users = Array.from({ length: 10 }, () => ({
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
+      username: faker.internet.userName(),
+      email: faker.internet.email(),
+      emailVerified: null,
+      password: faker.internet.password(),
+      image: "",
+      address: faker.location.streetAddress(),
+      phoneNum: faker.phone.number(),
+      postalCode: faker.location.zipCode(),
+      createAt: faker.date.past(),
+      isAdmin: false,
+    }));
+
+    const seededUsers = await prisma.user.createMany({
+      data: users,
+    });
+
+    console.log("Seeded Users: ", seededUsers);
+
+    //! Seed categories
+    const computer = await prisma.category.upsert({
+      where: { href: "computer" },
+      update: {},
+      create: {
+        name: "کامپیوتر",
+        title: "کامپیوتر",
+        desc: "کامپیوتر و قطعات",
+        icon: "Computer",
+        imgSrc: "/images/categories/components.webp",
+        imgWidth: "600",
+        imgHeight: "0",
+        href: "computer",
+        styles: {
+          order: "1",
+          display: "flex",
+          alignItems: "center",
+          gridRowStart: "1",
+          paddingBlock: "2rem",
+          flexDirection: "column",
+          paddingInline: "1rem",
+          justifyContent: "space-between",
+          backgroundColor: "#EBE76C",
+          gridColumnStart: "span 3",
+        },
+      },
+    });
+
+    const network = await prisma.category.upsert({
+      where: { href: "network" },
+      update: {},
+      create: {
+        name: "تجهیزات شبکه",
+        title: "تجهیزات شبکه",
+        desc: "انواع تجهیزات پسیو و اکتیو شبکه",
+        icon: "network",
+        imgSrc: "/images/categories/network.png",
+        imgWidth: "400",
+        imgHeight: "0",
+        href: "network",
+        styles: {
+          order: "3",
+          display: "flex",
+          alignItems: "center",
+          marginRight: "16px",
+          gridRowStart: "2",
+          paddingBlock: "2rem",
+          flexDirection: "column",
+          paddingInline: "1rem",
+          justifyContent: "space-between",
+          backgroundColor: "#ED7B7B",
+          gridColumnStart: "span 2",
+        },
+      },
+    });
+
+    const peripherals = await prisma.category.upsert({
+      where: { href: "peripherals" },
+      update: {},
+      create: {
+        name: "لوازم جانبی",
+        title: "لوازم جانبی",
+        desc: "لوازم جانبی کامپیوتر",
+        icon: "MonitorSpeaker",
+        imgSrc: "/images/categories/keyboard-mouse.webp",
+        imgWidth: "600",
+        imgHeight: "0",
+        href: "peripherals",
+        styles: {
+          order: "2",
+          display: "flex",
+          alignItems: "center",
+          gridColumn: "4/span3",
+          paddingBlock: "2rem",
+          flexDirection: "column",
+          paddingInline: "1rem",
+          justifyContent: "space-between",
+          backgroundColor: "#90b376",
+        },
+      },
+    });
+
+    const audioVideo = await prisma.category.upsert({
+      where: { href: "audio-video" },
+      update: {},
+      create: {
+        name: "تجهیزات صدا و تصویر",
+        title: "تجهیزات صدا و تصویر",
+        desc: "تجهیزات صدا و تصویر حرفه‌ای",
+        icon: "Mic",
+        imgSrc: "/images/categories/sound.png",
+        imgWidth: "400",
+        imgHeight: "0",
+        href: "audio-video",
+        styles: {
+          order: "4",
+          display: "flex",
+          alignItems: "center",
+          gridColEnd: "4",
+          paddingBlock: "2rem",
+          flexDirection: "column",
+          paddingInline: "1rem",
+          justifyContent: "space-between",
+          backgroundColor: "#836096",
+          gridColumnStart: "span 2",
+        },
+      },
+    });
+
+    const adaptersCables = await prisma.category.upsert({
+      where: { href: "adapters-cables" },
+      update: {},
+      create: {
+        name: "مبدل | کابل",
+        title: "مبدل | کابل",
+        desc: "انواع تبدیل و کابل کامپیوتر",
+        icon: "PlugZap",
+        imgSrc: "/images/categories/adapter.webp",
+        imgWidth: "400",
+        imgHeight: "0",
+        href: "adapters-cables",
+        styles: {
+          order: "5",
+          display: "flex",
+          alignItems: "center",
+          gridColumn: "5 / span 2",
+          paddingBlock: "2rem",
+          flexDirection: "column",
+          paddingInline: "1rem",
+          justifyContent: "space-between",
+          backgroundColor: "#769fb3",
+        },
+      },
+    });
+
+    console.log(
+      "Seeded Categories: ",
+      computer,
+      network,
+      peripherals,
+      audioVideo,
+      adaptersCables
+    );
+
+    //! Seed subCategories
+    const compoPC = await prisma.subCategory.upsert({
+      where: { href: "components" },
+      update: {},
+      create: {
+        name: "قطعات کامپیوتر",
+        title: "قطعات کامپیوتر",
+        desc: "قطعات کامپیوتر",
+        icon: "PcCase",
+        slug: "computer",
+        href: "components",
+      },
+    });
+
+    const networkActive = await prisma.subCategory.upsert({
+      where: { href: "network-active" },
+      update: {},
+      create: {
+        name: "تجهیزات اکتیو",
+        title: "تجهیزات اکتیو",
+        desc: "تجهیزات اکتیو شبکه",
+        icon: "Router",
+        slug: "network",
+        href: "network-active",
+      },
+    });
+    const networkPassive = await prisma.subCategory.upsert({
+      where: { href: "network-passive" },
+      update: {},
+      create: {
+        name: "تجهیزات پسیو",
+        title: "تجهیزات پسیو",
+        desc: "تجهیزات پسیو شبکه",
+        icon: "Cable",
+        slug: "network",
+        href: "network-passive",
+      },
+    });
+    const readyPc = await prisma.subCategory.upsert({
+      where: { href: "ready-pc" },
+      update: {},
+      create: {
+        name: "کامپیوتر آماده",
+        title: "کامپیوتر آماده",
+        desc: "کامپیوتر اسمبل شده و انواع زیرو کلاینت ",
+        icon: "Server",
+        slug: "computer",
+        href: "ready-pc",
+      },
+    });
+    const storage = await prisma.subCategory.upsert({
+      where: { href: "storage" },
+      update: {},
+      create: {
+        name: "تجهیزات ذخیره سازی",
+        title: "تجهیزات ذخیره سازی",
+        desc: "انواع هارد درایو و اس اس دی",
+        icon: "Database",
+        slug: "peripherals",
+        href: "storage",
+      },
+    });
+    const mobileAccessories = await prisma.subCategory.upsert({
+      where: { href: "mobile-accessories" },
+      update: {},
+      create: {
+        name: "جانبی موبایل و تبلت",
+        title: "جانبی موبایل و تبلت",
+        desc: "جانبی موبایل و تبلت",
+        icon: "TabletSmartphone",
+        slug: "peripherals",
+        href: "mobile-accessories",
+      },
+    });
+    const computerPeripherals = await prisma.subCategory.upsert({
+      where: { href: "computer-peripherals" },
+      update: {},
+      create: {
+        name: "جانبی کامپیوتر",
+        title: "جانبی کامپیوتر",
+        desc: "انواع کیبورد و ماوس، اسپیکر، هدفون",
+        icon: "Headphones",
+        slug: "peripherals",
+        href: "computer-peripherals",
+      },
+    });
+    const adapters = await prisma.subCategory.upsert({
+      where: { href: "adapters" },
+      update: {},
+      create: {
+        name: "مبدل",
+        title: "مبدل",
+        desc: "مبدل‌های کامپیوتر",
+        icon: "HdmiPort",
+        slug: "adapters-cables",
+        href: "adapters",
+      },
+    });
+    const cables = await prisma.subCategory.upsert({
+      where: { href: "cables" },
+      update: {},
+      create: {
+        name: "کابلهای کامپیوتر",
+        title: "کابلهای کامپیوتر",
+        desc: "کابلهای کامپیوتر",
+        icon: "Usb",
+        slug: "adapters-cables",
+        href: "cables",
+      },
+    });
+    const videoEquipment = await prisma.subCategory.upsert({
+      where: { href: "video-equipment" },
+      update: {},
+      create: {
+        name: "تجهیزات تصویری",
+        title: "تجهیزات تصویری",
+        desc: "تجهیزات تصویری",
+        icon: "Projector",
+        slug: "audio-video",
+        href: "video-equipment",
+      },
+    });
+    const soundEquipment = await prisma.subCategory.upsert({
+      where: { href: "sound-equipment" },
+      update: {},
+      create: {
+        name: "تجهیزات صوتی",
+        title: "تجهیزات صوتی",
+        desc: "تجهیزات صوتی",
+        icon: "Mic2",
+        slug: "audio-video",
+        href: "sound-equipment",
+      },
+    });
+
+    console.log(
+      "Seeded SubCategories: ",
+      compoPC,
+      networkActive,
+      networkPassive,
+      readyPc,
+      storage,
+      mobileAccessories,
+      computerPeripherals,
+      adapters,
+      cables,
+      videoEquipment,
+      soundEquipment
+    );
+
+    //! Seed productGroups
+    const networkTools = await prisma.productGroup.upsert({
+      where: { href: "network-tools" },
+      update: {},
+      create: {
+        name: "آچار شبکه",
+        title: "آچار شبکه",
+        desc: "انواع آچار شبکه",
+        icon: null,
+        slug: "network",
+        subSlug: "network-passive",
+        href: "network-tools",
+      },
+    });
+    const router = await prisma.productGroup.upsert({
+      where: { href: "router" },
+      update: {},
+      create: {
+        name: "روتر شبکه",
+        title: "مسیریاب شبکه",
+        desc: "روتر | مسیریاب شبکه",
+        icon: null,
+        slug: "network",
+        subSlug: "network-active",
+        href: "router",
+      },
+    });
+    const keyboard = await prisma.productGroup.upsert({
+      where: { href: "keyboard" },
+      update: {},
+      create: {
+        name: "کیبورد کامپیوتر",
+        title: "کیبورد کامپیوتر",
+        desc: "کیبورد کامپیوتر",
+        icon: null,
+        slug: "peripherals",
+        subSlug: "computer-peripherals",
+        href: "keyboard",
+      },
+    });
+    const speaker = await prisma.productGroup.upsert({
+      where: { href: "speaker" },
+      update: {},
+      create: {
+        name: "اسپیکر کامپیوتر",
+        title: "اسپیکر کامپیوتر و خانگی",
+        desc: "اسپیکر کامپیوتر و خانگی",
+        icon: null,
+        slug: "peripherals",
+        subSlug: "computer-peripherals",
+        href: "speaker",
+      },
+    });
+    const charger = await prisma.productGroup.upsert({
+      where: { href: "charger" },
+      update: {},
+      create: {
+        name: "شارژر موبایل",
+        title: "شارژر موبایل",
+        desc: "شارژر موبایل",
+        icon: null,
+        slug: "peripherals",
+        subSlug: "mobile-accessories",
+        href: "charger",
+      },
+    });
+    const hdd = await prisma.productGroup.upsert({
+      where: { href: "hdd" },
+      update: {},
+      create: {
+        name: "هارد درایو",
+        title: "هارد درایو",
+        desc: "هارد درایو",
+        icon: null,
+        slug: "peripherals",
+        subSlug: "storage",
+        href: "hdd",
+      },
+    });
+    const ssd = await prisma.productGroup.upsert({
+      where: { href: "ssd" },
+      update: {},
+      create: {
+        name: "اس اس دی",
+        title: "اس اس دی",
+        desc: "اس اس دی",
+        icon: null,
+        slug: "peripherals",
+        subSlug: "storage",
+        href: "ssd",
+      },
+    });
+    const assembledPC = await prisma.productGroup.upsert({
+      where: { href: "assembled-pc" },
+      update: {},
+      create: {
+        name: "کیس اسمبل شده",
+        title: "کیس اسمبل شده",
+        desc: "کیس اسمبل شده",
+        icon: null,
+        slug: "computer",
+        subSlug: "ready-pc",
+        href: "assembled-pc",
+      },
+    });
+    const cpu = await prisma.productGroup.upsert({
+      where: { href: "cpu" },
+      update: {},
+      create: {
+        name: "پردازنده کامپیوتر",
+        title: "پردازنده کامپیوتر",
+        desc: "پردازنده کامپیوتر",
+        icon: null,
+        slug: "computer",
+        subSlug: "components",
+        href: "cpu",
+      },
+    });
+    const gpu = await prisma.productGroup.upsert({
+      where: { href: "gpu" },
+      update: {},
+      create: {
+        name: "کارت گرافیک",
+        title: "کارت گرافیک",
+        desc: "کارت گرافیک",
+        icon: null,
+        slug: "computer",
+        subSlug: "components",
+        href: "gpu",
+      },
+    });
+    const ram = await prisma.productGroup.upsert({
+      where: { href: "ram" },
+      update: {},
+      create: {
+        name: "رم کامپیوتر",
+        title: "رم کامپیوتر",
+        desc: "رم کامپیوتر",
+        icon: null,
+        slug: "computer",
+        subSlug: "components",
+        href: "ram",
+      },
+    });
+    const switcEq = await prisma.productGroup.upsert({
+      where: { href: "switch" },
+      update: {},
+      create: {
+        name: "سوئیچ شبکه",
+        title: "سوئیچ شبکه",
+        desc: "سوئیچ شبکه",
+        icon: null,
+        slug: "network",
+        subSlug: "network-active",
+        href: "switch",
+      },
+    });
+    const networkCables = await prisma.productGroup.upsert({
+      where: { href: "network-cables" },
+      update: {},
+      create: {
+        name: "کابل شبکه",
+        title: "کابل شبکه",
+        desc: "کابل شبکه",
+        icon: null,
+        slug: "network",
+        subSlug: "network-passive",
+        href: "network-cables",
+      },
+    });
+    const headphone = await prisma.productGroup.upsert({
+      where: { href: "headphone" },
+      update: {},
+      create: {
+        name: "هدفون | هدست",
+        title: "هدفون | هدست",
+        desc: "هدفون | هدست",
+        icon: null,
+        slug: "peripherals",
+        subSlug: "computer-peripherals",
+        href: "headphone",
+      },
+    });
+    const mainboard = await prisma.productGroup.upsert({
+      where: { href: "mainboard" },
+      update: {},
+      create: {
+        name: "مادربرد",
+        title: "مادربرد کامپیوتر",
+        desc: "مادربرد کامپیوتر",
+        icon: null,
+        slug: "computer",
+        subSlug: "components",
+        href: "mainboard",
+      },
+    });
+    const mouse = await prisma.productGroup.upsert({
+      where: { href: "mouse" },
+      update: {},
+      create: {
+        name: "ماوس کامپیوتر",
+        title: "ماوس کامپیوتر",
+        desc: "ماوس کامپیوتر",
+        icon: null,
+        slug: "peripherals",
+        subSlug: "computer-peripherals",
+        href: "mouse",
+      },
+    });
+    const hdmiAdapters = await prisma.productGroup.upsert({
+      where: { href: "hdmi-adapters" },
+      update: {},
+      create: {
+        name: "مبدل HDMI",
+        title: "مبدل HDMI",
+        desc: "انواع مبدل HDMI",
+        icon: null,
+        slug: "adapters-cables",
+        subSlug: "adapters",
+        href: "hdmi-adapters",
+      },
+    });
+    const usbCable = await prisma.productGroup.upsert({
+      where: { href: "usb-cable" },
+      update: {},
+      create: {
+        name: "کابل USB",
+        title: "کابل USB",
+        desc: "کابل usb",
+        icon: null,
+        slug: "adapters-cables",
+        subSlug: "cables",
+        href: "usb-cable",
+      },
+    });
+    const hdmiCable = await prisma.productGroup.upsert({
+      where: { href: "hdmi-cable" },
+      update: {},
+      create: {
+        name: "کابل HDMI",
+        title: "کابل HDMI",
+        desc: "کابل hdmi",
+        icon: null,
+        slug: "adapters-cables",
+        subSlug: "cables",
+        href: "hdmi-cable",
+      },
+    });
+    const microphone = await prisma.productGroup.upsert({
+      where: { href: "microphone" },
+      update: {},
+      create: {
+        name: "میکروفون",
+        title: "میکروفون",
+        desc: "میکروفون",
+        icon: null,
+        slug: "audio-video",
+        subSlug: "sound-equipment",
+        href: "microphone",
+      },
+    });
+    const videoConference = await prisma.productGroup.upsert({
+      where: { href: "video-conference" },
+      update: {},
+      create: {
+        name: "ویدئو کنفرانس",
+        title: "ویدئو کنفرانس",
+        desc: "ویدئو کنفرانس",
+        icon: null,
+        slug: "audio-video",
+        subSlug: "video-equipment",
+        href: "video-conference",
+      },
+    });
+
+    console.log(
+      "Seeded ProductGroups: ",
+      networkTools,
+      router,
+      keyboard,
+      speaker,
+      charger,
+      hdd,
+      ssd,
+      assembledPC,
+      cpu,
+      gpu,
+      ram,
+      switcEq,
+      networkCables,
+      headphone,
+      mainboard,
+      mouse,
+      hdmiAdapters,
+      usbCable,
+      hdmiCable,
+      microphone,
+      videoConference
+    );
+
+    //! Seed banners
+    const bannerLeft = await prisma.bannerContent.upsert({
+      where: { id: "clpvqvast0000umfgrkfbdxm3" },
+      update: {},
+      create: {
+        id: "clpvqvast0000umfgrkfbdxm3",
+        title: "فروش ویژه",
+        description: "کیبورد کامپیوتر",
+        buttonText: "مشاهده",
+        imgSrc: "/images/banners/desktop.jpg",
+        imgWidth: "700",
+        imgHeight: "300",
+        numberOfDiscountDate: 3,
+        href: "/peripherals/computer-peripherals/keyboard",
+      },
+    });
+    const bannerRight = await prisma.bannerContent.upsert({
+      where: { id: "clpvqygn90001umfgu0a1wfg5" },
+      update: {},
+      create: {
+        id: "clpvqygn90001umfgu0a1wfg5",
+        title: "فروش ویژه",
+        description: "هدفون‌های گیمینگ",
+        buttonText: "مشاهده",
+        imgSrc: "/images/banners/gaming.jpg",
+        imgWidth: "700",
+        imgHeight: "300",
+        numberOfDiscountDate: 4,
+        href: "/peripherals/computer-peripherals/headphone",
+      },
+    });
+
+    console.log("Seeded Banners: ", bannerLeft, bannerRight);
+  } catch (error) {
+    console.error("Error seeding data:", error);
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+//? Call MAIN
+main()
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });

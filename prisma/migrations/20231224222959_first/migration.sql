@@ -29,7 +29,7 @@ CREATE TABLE "Session" (
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
-    "fristName" TEXT,
+    "firstName" TEXT,
     "lastName" TEXT,
     "username" TEXT NOT NULL,
     "email" TEXT NOT NULL,
@@ -37,8 +37,8 @@ CREATE TABLE "User" (
     "password" TEXT NOT NULL,
     "image" TEXT,
     "address" TEXT,
-    "phoneNum" INTEGER,
-    "postalCode" INTEGER,
+    "phoneNum" TEXT,
+    "postalCode" TEXT,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateAt" TIMESTAMP(3) NOT NULL,
     "isAdmin" BOOLEAN NOT NULL DEFAULT false,
@@ -62,8 +62,8 @@ CREATE TABLE "Category" (
     "desc" TEXT,
     "icon" TEXT,
     "imgSrc" TEXT NOT NULL,
-    "imgWidth" INTEGER NOT NULL,
-    "imgHeight" INTEGER NOT NULL,
+    "imgWidth" TEXT NOT NULL,
+    "imgHeight" TEXT NOT NULL,
     "href" TEXT NOT NULL,
     "styles" JSONB,
 
@@ -142,12 +142,32 @@ CREATE TABLE "BannerContent" (
     "description" TEXT NOT NULL,
     "buttonText" TEXT NOT NULL,
     "imgSrc" TEXT NOT NULL,
-    "imgWidth" INTEGER NOT NULL,
-    "imgHeight" INTEGER NOT NULL,
+    "imgWidth" TEXT NOT NULL,
+    "imgHeight" TEXT NOT NULL,
     "numberOfDiscountDate" INTEGER NOT NULL,
     "href" TEXT NOT NULL,
 
     CONSTRAINT "BannerContent_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Cart" (
+    "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modified_at" TIMESTAMP(3),
+    "deleted_at" TIMESTAMP(3),
+    "userID" TEXT NOT NULL,
+    "status" TEXT NOT NULL,
+    "totalQuantity" INTEGER NOT NULL,
+    "totalAmount" INTEGER NOT NULL,
+
+    CONSTRAINT "Cart_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "_CartItem" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
 );
 
 -- CreateIndex
@@ -183,6 +203,12 @@ CREATE UNIQUE INDEX "Product_enTitle_key" ON "Product"("enTitle");
 -- CreateIndex
 CREATE UNIQUE INDEX "Order_intent_id_key" ON "Order"("intent_id");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "_CartItem_AB_unique" ON "_CartItem"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CartItem_B_index" ON "_CartItem"("B");
+
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -209,3 +235,12 @@ ALTER TABLE "Product" ADD CONSTRAINT "Product_groupTitle_fkey" FOREIGN KEY ("gro
 
 -- AddForeignKey
 ALTER TABLE "Order" ADD CONSTRAINT "Order_userEmail_fkey" FOREIGN KEY ("userEmail") REFERENCES "User"("email") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Cart" ADD CONSTRAINT "Cart_userID_fkey" FOREIGN KEY ("userID") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CartItem" ADD CONSTRAINT "_CartItem_A_fkey" FOREIGN KEY ("A") REFERENCES "Cart"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CartItem" ADD CONSTRAINT "_CartItem_B_fkey" FOREIGN KEY ("B") REFERENCES "Product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
