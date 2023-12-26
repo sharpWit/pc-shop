@@ -22,14 +22,18 @@ interface Props {
 const Images: FC<Props> = ({ product }) => {
   const imageGalleryRef = useRef(null);
   //   const [fullscreen, setFullscreen] = useState(false);
-  const [showNav, setShowNav] = useState(window.innerWidth < 1000);
+  const [showNav, setShowNav] = useState(false);
 
   const images: ReactImageGalleryItem[] = product.img.map((url) => ({
     original: url,
     thumbnail: url,
   }));
 
+  // console.log("PRODUCT: ", product);
+
   useEffect(() => {
+    // Set initial state based on window.innerWidth
+    setShowNav(window.innerWidth < 1000);
     // Add an event listener for window resize
     const handleResize = () => {
       setShowNav(window.innerWidth < 1000);
