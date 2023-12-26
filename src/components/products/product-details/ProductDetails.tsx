@@ -4,7 +4,7 @@
 import Images from "./Images";
 import DetailsSection from "./DetailsSection";
 import SimilarProducts from "./SimilarProducts";
-import Benefits from "@/components/benefits/Benefits";
+import Benefit from "@/components/benefit/Benefit";
 
 // Types //
 import { IProduct } from "@/types/products";
@@ -27,7 +27,7 @@ const ProductDetails: React.FC<Props> = ({ product, products }) => {
       </div>
 
       <div className="mx-auto">
-        <Benefits />
+        <Benefit />
       </div>
       <ProductContent />
       {similarProductsList.length > 1 ? (

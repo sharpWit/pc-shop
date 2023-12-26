@@ -16,8 +16,8 @@ import { newestProductsActions } from "@/store/newestProduct-slice";
 import { specialOfferProductsActions } from "@/store/specialOfferProducts-slice";
 import Loading from "../loading";
 import Featured from "@/components/featured/Featured";
-import Benefits from "@/components/benefits/Benefits";
 import { newestProductsFn } from "@/utils/sortByTimeStamp";
+import Benefit from "@/components/benefit/Benefit";
 
 // Dynamics //
 const Offers = dynamic(() => import("@/components/offers/Offers"));
@@ -52,7 +52,7 @@ const Home = () => {
         <Featured />
       </Suspense>
       <Suspense fallback={<Loading />}>
-        <Benefits />
+        <Benefit />
       </Suspense>
       <Suspense fallback={<Loading />}>
         <Offers />

@@ -16,7 +16,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card/Card";
 import { AspectRatio } from "../ui/AspectRetio";
 
-const Benefits = () => {
+const Benefit = () => {
   return (
     <div className="flex items-center justify-center gap-4 my-8 lg:my-6 max-w-[1200px] w-full flex-wrap lg:flex-nowrap">
       {benefitContent.map((benefitItem) => {
@@ -60,4 +60,4 @@ const Benefits = () => {
   );
 };
 
-export default Benefits;
+export default Benefit;
