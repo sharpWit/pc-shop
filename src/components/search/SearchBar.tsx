@@ -9,6 +9,7 @@ const SearchBar = () => {
         <input
           className="px-4 py-2 lg:py-3 appearance-none bg-transparent border-none w-full text-xl text-input-foreground
        placeholder-foreground/50 focus:outline-none "
+          name="search"
           type="search"
           placeholder="جستجو"
         />

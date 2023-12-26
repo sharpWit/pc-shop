@@ -3,6 +3,7 @@ import { IBrand } from "./products";
 
 export interface ICartProduct {
   id: string;
+  createdAt: string;
   title: string;
   enTitle: string;
   img: string[];
@@ -13,7 +14,6 @@ export interface ICartProduct {
   slug: string;
   subSlug: string;
   groupTitle: string;
-  brand: IBrand;
   registerDate?: string;
   quantity: number;
   totalPrice: number;

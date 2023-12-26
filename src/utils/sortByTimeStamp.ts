@@ -10,8 +10,8 @@ export const sortByTimeStamp = (
   product1: IProduct,
   product2: IProduct
 ): number => {
-  if (product2?.created_at && product1?.created_at) {
-    return Number(product2?.created_at) - Number(product1?.created_at);
+  if (product2?.createdAt && product1?.createdAt) {
+    return Number(product2?.createdAt) - Number(product1?.createdAt);
   }
   return 0;
 };
@@ -20,7 +20,7 @@ export const newestProductsFn = (products: IProduct[]) => {
   const productsWithTimeStamp = products?.map((product) => {
     return {
       ...product,
-      timeStamp: getTimeStamp(product.created_at!),
+      timeStamp: getTimeStamp(product.createdAt!),
     };
   });
   return productsWithTimeStamp?.sort(sortByTimeStamp);
