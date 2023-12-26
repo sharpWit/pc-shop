@@ -4,10 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 // Types //
 interface IProductGroups {
   id: string;
-  name: String;
-  icon?: String;
-  href: String;
-  subSlug: String;
+  name: string;
+  icon?: string;
+  href: string;
+  subSlug: string;
 }
 
 const useProductGroups = () => {

@@ -1,6 +1,6 @@
 export interface IProduct {
   id: string;
-  created_at?: string;
+  createdAt: string;
   modified_at?: string;
   deleted_at?: string;
   title: string;
@@ -14,7 +14,7 @@ export interface IProduct {
   slug: string;
   subSlug: string;
   groupTitle: string;
-  brand: IBrand;
+  // brand: IBrand;
   details?: IProductDetails[];
 }
 
