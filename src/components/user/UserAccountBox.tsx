@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 // Instruments //
-import jsCookie from "js-cookie";
+// import jsCookie from "js-cookie";
 import { useDispatch } from "react-redux";
 
 // Icons //
@@ -23,7 +23,7 @@ const UserAccountBox = () => {
   const dispatch = useDispatch();
   function onLogoutClickHandler() {
     dispatch(userInfoActions.userLogout());
-    jsCookie.remove("userInfo");
+    // jsCookie.remove("userInfo");
     dispatch(cartActions.clearCart());
     router.push("/");
   }

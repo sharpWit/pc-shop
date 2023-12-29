@@ -7,7 +7,6 @@ import "slick-carousel/slick/slick-theme.css";
 import type { Metadata } from "next";
 
 // Providers //
-import AuthProvider from "@/providers/AuthProvider";
 import QueryProvider from "@/providers/QueryProvider";
 import ReduxProvider from "@/providers/ReduxProvider";
 import { ThemeProvider } from "@/providers/ThemeProvider";
@@ -25,22 +24,20 @@ export default function RootLayout(props: React.PropsWithChildren) {
   return (
     <html lang="fa">
       <body className="min-h-screen min-w-[320px] overflow-y-auto antialiased">
-        <AuthProvider>
-          <QueryProvider>
-            <ReduxProvider>
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="system"
-                enableSystem
-                disableTransitionOnChange
-              >
-                <div className="relative flex min-h-screen flex-col">
-                  {props.children}
-                </div>
-              </ThemeProvider>
-            </ReduxProvider>
-          </QueryProvider>
-        </AuthProvider>
+        <QueryProvider>
+          <ReduxProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <div className="relative flex min-h-screen flex-col">
+                {props.children}
+              </div>
+            </ThemeProvider>
+          </ReduxProvider>
+        </QueryProvider>
         <Toaster />
       </body>
     </html>

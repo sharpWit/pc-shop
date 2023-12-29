@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 
 // Instruments //
 import * as z from "zod";
-import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -44,21 +43,21 @@ const SignInForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    const signInData = await signIn("credentials", {
-      email: values.email,
-      password: values.password,
-      redirect: false,
-    });
-    if (signInData?.error) {
-      toast({
-        variant: "destructive",
-        title: "شما با یک خطا مواجه شدید!",
-        description: `${signInData?.error}`,
-        action: <ToastAction altText="Try again">دوباره تلاش کنید</ToastAction>,
-      });
-    } else {
-      router.push("/");
-    }
+    // const signInData = await signIn("credentials", {
+    //   email: values.email,
+    //   password: values.password,
+    //   redirect: false,
+    // });
+    // if (signInData?.error) {
+    //   toast({
+    //     variant: "destructive",
+    //     title: "شما با یک خطا مواجه شدید!",
+    //     description: `${signInData?.error}`,
+    //     action: <ToastAction altText="Try again">دوباره تلاش کنید</ToastAction>,
+    //   });
+    // } else {
+    //   router.push("/");
+    // }
   };
 
   return (

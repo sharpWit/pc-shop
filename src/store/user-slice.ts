@@ -1,15 +1,18 @@
 // Instruments //
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
 // Types //
 import { IUser, IUserInfo } from "@/types/user";
 
 const initialState: IUserInfo = {
-  userInformation: Cookies.get("userInfo")
-    ? JSON.parse(Cookies.get("userInfo")!)
-    : null,
+  userInformation: { username: "", email: "" },
 };
+// const initialState: IUserInfo = {
+//   userInformation: Cookies.get("userInfo")
+//     ? JSON.parse(Cookies.get("userInfo")!)
+//     : null,
+// };
 
 const userInfoSlice = createSlice({
   name: "userInfo",
