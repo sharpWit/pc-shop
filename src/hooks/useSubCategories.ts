@@ -1,4 +1,5 @@
 // Instruments //
+import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
 // Types //
@@ -27,11 +28,15 @@ const useSubCategories = () => {
     queryKey: ["subCategories"],
     queryFn: async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/subCategories");
-        if (!response.ok) {
+        const response = await axios.get(
+          "http://localhost:3000/api/subCategories"
+        );
+
+        if (response.status !== 200) {
           throw new Error("Categories could not be loaded");
         }
-        const data: ISubCategoryTitle[] = await response.json();
+
+        const data: ISubCategoryTitle[] = response.data;
 
         return data;
       } catch (error) {

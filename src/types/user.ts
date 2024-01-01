@@ -1,12 +1,11 @@
 export interface IUser {
-  id?: string;
-  username: string;
-  email: string;
-  password?: string;
-  isAdmin?: boolean;
-  accounts?: string[];
-  sessions?: string[];
-  orders?: string[];
+  id: string;
+  email?: string;
+  phone?: string;
+  created_at?: string;
+  last_sign_in_at?: string;
+  role?: string;
+  updated_at?: string;
 }
 
 export interface IUserInfo {

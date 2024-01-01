@@ -1,5 +1,6 @@
 // Instruments //
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 // Types //
 interface ICategoryTitle {
@@ -18,11 +19,15 @@ const useCategories = () => {
     queryKey: ["categories"],
     queryFn: async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/categories");
-        if (!response.ok) {
+        const response = await axios.get(
+          "http://localhost:3000/api/categories"
+        );
+
+        if (response.status !== 200) {
           throw new Error("Categories could not be loaded");
         }
-        const data: ICategoryTitle[] = await response.json();
+
+        const data: ICategoryTitle[] = response.data;
 
         return data;
       } catch (error) {

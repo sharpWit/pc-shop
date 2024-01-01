@@ -1,4 +1,5 @@
 // Instruments //
+import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
 // Types //
@@ -19,11 +20,15 @@ const useProductGroups = () => {
     queryKey: ["productGroups"],
     queryFn: async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/productGroups");
-        if (!response.ok) {
+        const response = await axios.get(
+          "http://localhost:3000/api/productGroups"
+        );
+
+        if (response.status !== 200) {
           throw new Error("ProductGroups could not be loaded");
         }
-        const data: IProductGroups[] = await response.json();
+
+        const data: IProductGroups[] = response.data;
 
         return data;
       } catch (error) {

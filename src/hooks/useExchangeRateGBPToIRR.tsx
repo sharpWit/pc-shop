@@ -3,6 +3,9 @@
 // Cores //
 import { useEffect, useState } from "react";
 
+// Instruments //
+import axios from "axios";
+
 // Utilities //
 import { irrCurrencyFormat } from "@/utils/currencyFormat";
 
@@ -15,10 +18,11 @@ export const useExchangeRateGBPToIRR = (price: number) => {
   useEffect(() => {
     const fetchExchangeRate = async () => {
       try {
-        const result = await fetch(`${URL}/${price}`);
-        if (result.ok) {
-          const data = await result.json();
-          const irToman = Math.floor(data.conversion_result / 1000) * 1000; //common currency in Iran
+        const response = await axios.get(`${URL}/${price}`);
+
+        if (response.status === 200) {
+          const data = response.data;
+          const irToman = Math.floor(data.conversion_result / 1000) * 1000; // Common currency in Iran
           setExchangePrice(irToman);
         } else {
           const priceWithHardRateExchange = price * hardRateExchange;
@@ -26,9 +30,9 @@ export const useExchangeRateGBPToIRR = (price: number) => {
           setExchangePrice(irToman);
           throw new Error();
         }
-      } catch (e) {
+      } catch (error) {
         console.log(
-          `⚠ Error: the server responded with a status of 429 ()=> free account has reached the number of requests allowed by free plan and price exchange is based on hard number`
+          `⚠ Error: the server responded with a status of 429 () => free account has reached the number of requests allowed by the free plan, and the price exchange is based on a hard number`
         );
       }
     };

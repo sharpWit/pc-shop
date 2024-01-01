@@ -1,7 +1,8 @@
 "use client";
 
 // Cores //
-import React, { useEffect } from "react";
+import React from "react";
+import Link from "next/link";
 
 // Icons //
 import {
@@ -43,19 +44,16 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/menu/navigation/Navigation";
-import ListItem from "../list-items/ListItem";
 
 // Hooks //
 import useCategories from "@/hooks/useCategories";
 import useSubCategories from "@/hooks/useSubCategories";
 import useProductGroups from "@/hooks/useProductGroups";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 
+// Creating Icon components from their names
 const iconComponents = {
   MonitorSpeaker,
   PcCase,
@@ -108,8 +106,9 @@ const MainMenu = () => {
                   className="text-lg"
                   data-orientation="vertical"
                 >
-                  {categories?.length
-                    ? categories.map((cat) => (
+                  {categories?.length ? (
+                    Array.isArray(categories) ? (
+                      categories.map((cat) => (
                         <NavigationMenuItem className="w-full" key={cat.id}>
                           <NavigationMenuTrigger className="max-w-full">
                             {cat.name &&
@@ -130,45 +129,60 @@ const MainMenu = () => {
                             ) : null}
                           </NavigationMenuTrigger>
                           <NavigationMenuContent className="grid md:grid-cols-2 gap-3 p-4 min-h-screen w-[400px] md:w-[500px] lg:w-[600px]">
-                            {subCategories
-                              ?.filter((subCat) => subCat.slug === cat.href)
-                              .map((filteredSubCat) => (
-                                <div
-                                  key={filteredSubCat.id}
-                                  className="flex flex-col select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground relative"
-                                >
-                                  <Link
-                                    href={`/${cat.href}/${filteredSubCat.href}`}
+                            {Array.isArray(subCategories) ? (
+                              subCategories
+                                .filter((subCat) => subCat.slug === cat.href)
+                                .map((filteredSubCat) => (
+                                  <div
+                                    key={filteredSubCat.id}
+                                    className="flex flex-col select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground relative"
                                   >
-                                    <h3 className="self-center mb-1 text-sm font-medium leading-none ">
-                                      {filteredSubCat.name}
-                                    </h3>
-                                  </Link>
-                                  <ul className="flex flex-col ">
-                                    {productGroups?.map(
-                                      (groupName) =>
-                                        groupName.subSlug ===
-                                          filteredSubCat.href && (
-                                          <li
-                                            key={groupName.id}
-                                            className=" m-1 py-1 px-2 space-y-1 bg-card rounded-md hover:bg-primary/40 transition-colors"
-                                          >
-                                            <Link
-                                              href={`/${cat.href}/${filteredSubCat.href}/${groupName.href}`}
-                                              className="block w-full h-full text-sm leading-loose text-muted-foreground hover:text-foreground"
+                                    <Link
+                                      href={`/${cat.href}/${filteredSubCat.href}`}
+                                    >
+                                      <h3 className="self-center mb-1 text-sm font-medium leading-none">
+                                        {filteredSubCat.name}
+                                      </h3>
+                                    </Link>
+                                    <ul className="flex flex-col">
+                                      {Array.isArray(productGroups) ? (
+                                        productGroups
+                                          .filter(
+                                            (groupName) =>
+                                              groupName.subSlug ===
+                                              filteredSubCat.href
+                                          )
+                                          .map((groupName) => (
+                                            <li
+                                              key={groupName.id}
+                                              className="m-1 py-1 px-2 space-y-1 bg-card rounded-md hover:bg-primary/40 transition-colors"
                                             >
-                                              {groupName.name}
-                                            </Link>
-                                          </li>
-                                        )
-                                    )}
-                                  </ul>
-                                </div>
-                              ))}
+                                              <Link
+                                                href={`/${cat.href}/${filteredSubCat.href}/${groupName.href}`}
+                                                className="block w-full h-full text-sm leading-loose text-muted-foreground hover:text-foreground"
+                                              >
+                                                {groupName.name}
+                                              </Link>
+                                            </li>
+                                          ))
+                                      ) : (
+                                        <div>
+                                          Error: Product groups is not an array
+                                        </div>
+                                      )}
+                                    </ul>
+                                  </div>
+                                ))
+                            ) : (
+                              <div>Error: Subcategories is not an array</div>
+                            )}
                           </NavigationMenuContent>
                         </NavigationMenuItem>
                       ))
-                    : null}
+                    ) : (
+                      <div>Error: Categories is not an array</div>
+                    )
+                  ) : null}
                 </NavigationMenuList>
               </NavigationMenu>
             </MenubarItem>

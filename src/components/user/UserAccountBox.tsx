@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 // Instruments //
-// import jsCookie from "js-cookie";
+import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 
 // Icons //
@@ -15,18 +15,29 @@ import { User, LogOut } from "lucide-react";
 import { userInfoActions } from "@/store/user-slice";
 import { cartActions } from "@/store/cart-slice";
 
+// Libraries //
+import supabase from "@/lib/supabase";
+
 // Components //
 import { Button } from "../ui/button";
 
 const UserAccountBox = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.refresh();
+  };
+
   function onLogoutClickHandler() {
+    Cookies.remove("userInfo");
     dispatch(userInfoActions.userLogout());
-    // jsCookie.remove("userInfo");
     dispatch(cartActions.clearCart());
+    handleSignOut();
     router.push("/");
   }
+
   return (
     <div>
       <ul>

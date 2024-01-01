@@ -1,3 +1,6 @@
+// Instruments //
+import axios from "axios";
+
 // Components //
 import CategorySmBox from "./CategorySmBox";
 import CategoryLgBox from "./CategoryLgBox";
@@ -7,15 +10,21 @@ import SectionTitle from "../ui/section-title";
 import { ICategories } from "@/types/categories";
 
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/categories", {
-    cache: "no-store",
-  });
+  try {
+    const response = await axios.get("http://localhost:3000/api/categories", {
+      headers: {
+        "Cache-Control": "no-store",
+      },
+    });
 
-  if (!res.ok) {
-    throw new Error("Failed!");
+    if (response.status !== 200) {
+      throw new Error("Failed!");
+    }
+
+    return response.data;
+  } catch (error) {
+    throw error;
   }
-
-  return res.json();
 };
 
 const Category = async () => {
