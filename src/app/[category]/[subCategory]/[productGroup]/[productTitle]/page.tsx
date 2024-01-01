@@ -20,7 +20,7 @@ const getData = async (
 ): Promise<IProduct | undefined> => {
   try {
     const response = await axios.get<IProduct[]>(
-      `http://localhost:3000/api/products/${category}/${subCategory}/${productGroup}/${productTitle}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${category}/${subCategory}/${productGroup}/${productTitle}`,
       {
         headers: {
           "Cache-Control": "no-store",
@@ -47,7 +47,7 @@ const getDataProducts = async (
 ) => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/products/${category}/${subCategory}/${productGroup}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${category}/${subCategory}/${productGroup}`,
       {
         headers: {
           "Cache-Control": "no-store",

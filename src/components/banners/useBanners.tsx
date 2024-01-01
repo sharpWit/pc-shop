@@ -23,7 +23,7 @@ const useBanners = () => {
     queryKey: ["banners"],
     queryFn: async () => {
       const data: TBanners[] = await axios
-        .get("http://localhost:3000/api/banners")
+        .get(` ${process.env.NEXT_PUBLIC_BASE_URL}/api/banners`)
         .then((res) => res.data);
       if (error) {
         console.error(error);

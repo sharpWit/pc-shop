@@ -29,7 +29,7 @@ const useSubCategories = () => {
     queryFn: async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/subCategories"
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/subCategories`
         );
 
         if (response.status !== 200) {

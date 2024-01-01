@@ -16,12 +16,7 @@ import { IProduct } from "@/types/products";
 const getData = async (category: string) => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/products/${category}`,
-      {
-        headers: {
-          "Cache-Control": "no-store",
-        },
-      }
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${category}`
     );
 
     if (response.status !== 200) {

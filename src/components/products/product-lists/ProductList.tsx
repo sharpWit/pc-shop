@@ -25,7 +25,7 @@ type Props = {
 
 const ProductList: React.FC<Props> = ({ productList: products }) => {
   const pathName = usePathname();
-  let isInNewestProductsPage = pathName === "/newestProducts" ? true : false;
+  let isInNewestProductsPage = pathName === "/newest" ? true : false;
 
   const [selectedRadioBtn, setSelectedRadioBtn] = useState<string>("all");
   const dispatch = useDispatch();

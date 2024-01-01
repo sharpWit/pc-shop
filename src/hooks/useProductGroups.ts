@@ -21,7 +21,7 @@ const useProductGroups = () => {
     queryFn: async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/productGroups"
+          ` ${process.env.NEXT_PUBLIC_BASE_URL}/api/productGroups`
         );
 
         if (response.status !== 200) {

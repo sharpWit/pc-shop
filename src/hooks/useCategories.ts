@@ -20,7 +20,7 @@ const useCategories = () => {
     queryFn: async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/categories"
+          ` ${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`
         );
 
         if (response.status !== 200) {

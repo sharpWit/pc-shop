@@ -11,11 +11,9 @@ import { ICategories } from "@/types/categories";
 
 const getData = async () => {
   try {
-    const response = await axios.get("http://localhost:3000/api/categories", {
-      headers: {
-        "Cache-Control": "no-store",
-      },
-    });
+    const response = await axios.get(
+      ` ${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`
+    );
 
     if (response.status !== 200) {
       throw new Error("Failed!");
