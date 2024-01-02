@@ -36,7 +36,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
             >
               <Header />
               <main className="min-h-screen w-full px-2">
-                <div className="container flex flex-col space-y-4 pt-0 lg:pt-[9rem] overflow-x-hidden relative">
+                <div className="container flex flex-col space-y-4 pt-2 lg:pt-[9rem] overflow-x-hidden relative">
                   {props.children}
                 </div>
               </main>

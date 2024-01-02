@@ -15,7 +15,7 @@ const SearchBar = () => {
         />
       </div>
       <div className=" block md:hidden">
-        <Search style={{ color: "#2563EB" }} />
+        <Search className="text-primary-foreground" />
       </div>
     </>
   );
