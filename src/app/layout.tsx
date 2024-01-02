@@ -13,6 +13,8 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 
 // Components //
 import { Toaster } from "@/components/ui/toasts/toaster";
+import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "فروشگاه بست‌ستاپز",
@@ -22,8 +24,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
-    <html lang="fa">
-      <body className="min-h-screen min-w-[320px] overflow-y-auto antialiased">
+    <html lang="fa-IR" dir="rtl">
+      <body className="min-h-screen antialiased">
         <QueryProvider>
           <ReduxProvider>
             <ThemeProvider
@@ -32,9 +34,13 @@ export default function RootLayout(props: React.PropsWithChildren) {
               enableSystem
               disableTransitionOnChange
             >
-              <div className="relative flex min-h-screen flex-col">
-                {props.children}
-              </div>
+              <Header />
+              <main className="min-h-screen w-full px-2">
+                <div className="container flex flex-col space-y-4 pt-0 lg:pt-[9rem] overflow-x-hidden relative">
+                  {props.children}
+                </div>
+              </main>
+              <Footer />
             </ThemeProvider>
           </ReduxProvider>
         </QueryProvider>

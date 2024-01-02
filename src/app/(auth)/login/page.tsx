@@ -13,7 +13,7 @@ const Login: NextPage = async () => {
   } = await supabase.auth.getSession();
 
   return (
-    <section className="min-h-screen w-full md:w-2/3 lg:w-2/5 mt-8">
+    <section className="min-h-screen w-full md:w-2/3 lg:w-2/5 mt-8 mx-auto">
       <SignInForm session={session} />
     </section>
   );

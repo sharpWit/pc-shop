@@ -18,7 +18,7 @@ import { AspectRatio } from "../ui/AspectRetio";
 
 const Benefit = () => {
   return (
-    <div className="flex items-center justify-center gap-4 my-8 lg:my-6 max-w-[1200px] w-full flex-wrap lg:flex-nowrap">
+    <div className="flex items-center justify-center gap-4 my-8 lg:my-6 mx-auto w-full flex-wrap lg:flex-nowrap">
       {benefitContent.map((benefitItem) => {
         return (
           <Card
