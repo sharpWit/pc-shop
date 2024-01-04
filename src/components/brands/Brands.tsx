@@ -46,7 +46,7 @@ const Brands = () => {
     ],
   };
   return (
-    <section className="container mx-2 p-0 text-center">
+    <section className="container mx-2 p-0 mb-10 space-y-8 text-center">
       <SectionTitle title={"برندهای محبوب"} />
       <Slider {...settings}>
         {brandContent.map((brandItem) => {

@@ -35,8 +35,8 @@ export default function RootLayout(props: React.PropsWithChildren) {
               disableTransitionOnChange
             >
               <Header />
-              <main className="min-h-screen w-full px-2">
-                <div className="container flex flex-col space-y-4 pt-2 lg:pt-[9rem] overflow-x-hidden relative">
+              <main className="min-h-[calc(100vh-6rem)] w-full px-1 pb-[5rem]">
+                <div className="container flex flex-col space-y-4 pt-1 lg:pt-[9rem] overflow-x-hidden relative">
                   {props.children}
                 </div>
               </main>
