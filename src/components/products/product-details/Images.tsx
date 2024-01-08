@@ -33,10 +33,10 @@ const Images: FC<Props> = ({ product }) => {
 
   useEffect(() => {
     // Set initial state based on window.innerWidth
-    setShowNav(window.innerWidth < 1000);
+    setShowNav(window.innerWidth < 1023);
     // Add an event listener for window resize
     const handleResize = () => {
-      setShowNav(window.innerWidth < 1000);
+      setShowNav(window.innerWidth < 1023);
     };
 
     window.addEventListener("resize", handleResize);

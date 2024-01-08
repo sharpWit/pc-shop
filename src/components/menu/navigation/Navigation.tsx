@@ -35,7 +35,7 @@ const NavigationMenuList = React.forwardRef<
   <NavigationMenuPrimitive.List
     ref={ref}
     className={cn(
-      "group mt-1 flex data-[orientation=vertical]:flex-col flex-1 list-none items-center justify-center data-[orientation=vertical]:justify-start space-y-1 ",
+      "group mt-1 flex data-[orientation=vertical]:flex-col flex-1 list-none items-center justify-center data-[orientation=vertical]:justify-start space-y-1",
       className
     )}
     {...props}
@@ -88,11 +88,15 @@ const NavigationMenuViewport = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport>
 >(({ className, ...props }, ref) => (
-  <div className={cn("absolute right-full top-0 flex justify-center bg-input")}>
-    <ScrollArea className="h-[50vh] w-full rounded-md border border-amber-600">
+  <div
+    className={cn(
+      "absolute h-full right-full top-0 flex justify-center bg-input"
+    )}
+  >
+    <ScrollArea className=" w-full rounded-md border border-amber-600">
       <NavigationMenuPrimitive.Viewport
         className={cn(
-          "origin-top-center relative mr-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full rounded-md border bg-popover text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
+          "origin-top-center relative mr-1.5 h-full lg:h-[var(--radix-navigation-menu-viewport-height)] w-full rounded-md border bg-popover text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
           className
         )}
         ref={ref}

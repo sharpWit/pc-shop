@@ -2,11 +2,11 @@
 import dynamic from "next/dynamic";
 
 // Components //
-// import Logo from "../logo/Logo";
-import Menu from "@/components/menu/Menu";
+import Logo from "../logo/Logo";
 import CartIcon from "@/components/cart/CartIcon";
 import SearchBar from "@/components/search/SearchBar";
 import { ModeToggle } from "@/components/theme/theme-toggle";
+import SidebarMenu from "@/components/menu/sidebar-menu/SidebarMenu";
 
 // dynamic import
 const UserBox = dynamic(() => import("@/components/user/User"), {
@@ -15,28 +15,29 @@ const UserBox = dynamic(() => import("@/components/user/User"), {
 
 const MobileHeader = () => {
   return (
-    <header className="fixed bottom-0 right-0 left-0 w-full p-0 bg-secondary text-secondary-foreground font-nav border-t-2 border-solid border-border z-[1000]">
-      {/* <div className="absolute shrink-0 -mr-3.5 lg:-mr-2">
-        <Logo />
-      </div> */}
-      <div className="flex items-center justify-between lg:hidden py-2 px-4  bg-primary z-[1000] shadow-md">
-        <div>
-          <Menu />
+    <section className="flex flex-col gap-2 container h-24">
+      <div className="flex-1 flex items-center justify-between">
+        <div className=" shrink-0 -mr-3.5 lg:-mr-2">
+          <Logo />
         </div>
-        <div>
+        <div className="flex items-center justify-between">
           <UserBox />
-        </div>
-        <div>
-          <SearchBar />
-        </div>
-        <div>
           <CartIcon />
+        </div>
+      </div>
+
+      <div className="flex-1 flex items-center justify-between">
+        <div>
+          <SidebarMenu />
+        </div>
+        <div className="flex-grow w-1/4">
+          <SearchBar />
         </div>
         <div>
           <ModeToggle />
         </div>
       </div>
-    </header>
+    </section>
   );
 };
 export default MobileHeader;

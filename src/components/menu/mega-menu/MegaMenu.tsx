@@ -4,7 +4,7 @@ import ExtraMenu from "./ExtraMenu";
 
 const MegaMenu = () => {
   return (
-    <div className="hidden lg:flex items-center flex-grow">
+    <div className="flex items-center flex-grow">
       <MainMenu />
       <ExtraMenu />
     </div>

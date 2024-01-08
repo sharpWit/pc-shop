@@ -85,7 +85,7 @@ const MainMenu = () => {
   const { productGroups } = useProductGroups();
 
   return (
-    <div>
+    <>
       <Menubar dir="rtl">
         <MenubarMenu>
           <MenubarTrigger className="font-titles font-semibold text-lg cursor-pointer">
@@ -208,7 +208,7 @@ const MainMenu = () => {
           </MenubarContent>
         </MenubarMenu>
       </Menubar>
-    </div>
+    </>
   );
 };
 
