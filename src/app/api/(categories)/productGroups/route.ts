@@ -1,10 +1,11 @@
 // Cores //
+import { cache } from "react";
 import { NextResponse } from "next/server";
 
 // Libraries //
 import supabase from "@/lib/supabase";
 
-export async function GET() {
+export const GET = cache(async () => {
   try {
     const { data: productGroups, error } = await supabase
       .from("ProductGroup")
@@ -21,4 +22,4 @@ export async function GET() {
       { status: 500 }
     );
   }
-}
+});
