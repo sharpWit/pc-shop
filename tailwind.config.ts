@@ -84,10 +84,32 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        sidenavLTR: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0px)" },
+        },
+        sidenavRTL: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0px)" },
+        },
+        fade: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        dropDown: {
+          "0%": { opacity: "0", transform: "scaleY(0)" },
+          "100%": { opacity: "1", transform: "scaleY(1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        sidenavRTLEntering: "sidenavRTL 0.3s ease-in-out forwards",
+        sidenavRTLExit: "sidenavRTL 0.3s ease-in-out reverse forwards",
+        dropDown: "dropDown 0.3s forwards",
+        dropDownExit: "dropDown 0.3s reverse forwards",
+        fadeEntering: "fade 0.3s forwards",
+        fadeExit: "fade 0.3s reverse forwards",
       },
       backgroundImage: {
         offersBG: "url('/images/carouselBox-bg/offersbg.webp')",

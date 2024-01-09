@@ -10,7 +10,7 @@ import SortedProductsListReducer from "./sortedProductList-slice";
 import newestProductReducer from "./newestProduct-slice";
 import cartUiReducer from "./cartUI-slice";
 import userInfoReducer from "./user-slice";
-// import sideNavBarReducer from "./sideNavBar-slice";
+import sideNavBarReducer from "./sideNavBar-slice";
 
 const store = configureStore({
   reducer: {
@@ -21,7 +21,7 @@ const store = configureStore({
     newestProductsList: newestProductReducer,
     cartUi: cartUiReducer,
     userInfo: userInfoReducer,
-    // sideNavBar: sideNavBarReducer,
+    sideNavBar: sideNavBarReducer,
   },
 
   // middleware: (getDefaultMiddleware) =>

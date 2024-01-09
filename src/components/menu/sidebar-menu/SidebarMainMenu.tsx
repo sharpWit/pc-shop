@@ -1,43 +1,34 @@
-"use client";
-
-import {
-  Sheet,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet/Sheet";
-
+// Cores //
 import Link from "next/link";
+
+// Components //
 import { MenubarSeparator } from "../menubar/Menubar";
 import SidebarExtraMenu from "./SidebarExtraMenu";
 import SidebarCatMenu from "./SidebarCatMenu";
 
 const SidebarMainMenu = () => {
   return (
-    <Sheet open>
-      <SheetContent className="flex flex-col justify-between z-[1001] w-full">
-        <SheetHeader>
-          <SheetTitle>دسته‌بندی‌ها</SheetTitle>
-        </SheetHeader>
-        <SidebarCatMenu />
-        <SidebarExtraMenu />
-        <SheetFooter className="text-sm font-medium">
-          <MenubarSeparator />
-          <Link href="/contact-us" className="block w-full h-full">
-            تماس باما
-          </Link>
-          <MenubarSeparator />
-          <Link href="/our-customers" className="block w-full h-full">
-            باشگاه مشتریان
-          </Link>
-          <MenubarSeparator />
-          <Link href="/bug-reports" className="block w-full h-full">
-            گزارش خطا
-          </Link>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
+    <section className="font-main p-3 flex flex-col justify-between h-[calc(100vh-10vh)]">
+      <h2 className="text-xl font-semibold p-2">دسته‌بندی‌ها</h2>
+
+      <SidebarCatMenu />
+
+      <SidebarExtraMenu />
+
+      <MenubarSeparator />
+      {/* Other links */}
+      <div className="flex flex-col text-sm">
+        <Link href="/contact-us" className="block w-full h-full">
+          تماس باما
+        </Link>
+        <Link href="/our-customers" className="block w-full h-full">
+          باشگاه مشتریان
+        </Link>
+        <Link href="/bug-reports" className="block w-full h-full">
+          گزارش خطا
+        </Link>
+      </div>
+    </section>
   );
 };
 export default SidebarMainMenu;

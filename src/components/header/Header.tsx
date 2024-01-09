@@ -8,7 +8,7 @@ import MobileHeader from "./mobile/MobileHeader";
 import DesktopHeader from "./desktop/DesktopHeader";
 
 const Header = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
     // Set initial state based on window.innerWidth

@@ -8,19 +8,19 @@ const SidebarExtraMenu = () => {
   return (
     <ul className="flex flex-col gap-2">
       <li className="flex items-center ml-1 hover:text-primary/70 transition-colors">
-        <Gift />
+        <Gift className="text-primary" />
         <Link href="/offers" className=" mr-1">
           پیشنهادات ویژه
         </Link>
       </li>
       <li className="flex items-center ml-1 hover:text-primary/70 transition-colors">
-        <Zap />
+        <Zap className="text-primary" />
         <Link href="/newest" className=" mr-1">
           محصولات جدید
         </Link>
       </li>
       <li className="flex items-center ml-1 hover:text-primary/70 transition-colors">
-        <ScrollText />
+        <ScrollText className="text-primary" />
         <Link href="/about" className=" mr-1">
           درباره‌ی ما
         </Link>
