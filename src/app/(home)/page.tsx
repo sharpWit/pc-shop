@@ -20,13 +20,21 @@ import { newestProductsFn } from "@/utils/sortByTimeStamp";
 import Benefit from "@/components/benefit/Benefit";
 
 // Dynamics //
-const Offers = dynamic(() => import("@/components/offers/Offers"));
-const Category = dynamic(() => import("../../components/category/Category"));
-const Newest = dynamic(() => import("../../components/newest/Newest"));
+const Offers = dynamic(() => import("@/components/offers/Offers"), {
+  ssr: false,
+});
+const Category = dynamic(() => import("../../components/category/Category"), {
+  ssr: false,
+});
+const Newest = dynamic(() => import("../../components/newest/Newest"), {
+  ssr: false,
+});
 const Banners = dynamic(() => import("../../components/banners/Banner"), {
   ssr: false,
 });
-const Brands = dynamic(() => import("../../components/brands/Brands"));
+const Brands = dynamic(() => import("../../components/brands/Brands"), {
+  ssr: false,
+});
 
 const Home = () => {
   const { products: offeredProducts } = useOferredProducts();

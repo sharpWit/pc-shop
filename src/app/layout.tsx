@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 // Cores //
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 
 // Providers //
 import QueryProvider from "@/providers/QueryProvider";
@@ -13,7 +14,6 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 
 // Components //
 import { Toaster } from "@/components/ui/toasts/toaster";
-import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 
 export const metadata: Metadata = {
@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   description:
     "فروشگاه آنلاین بست‌ستاپز خرید انواع کامپیوترهای گیمینگ، اداری و خانگی، و انواع لوارم جانبی کامپیوتر را برای مشتریان فراهم کرده است",
 };
+
+const DynamicHeader = dynamic(() => import("@/components/header/Header"), {
+  ssr: false,
+});
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
@@ -34,7 +38,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
               enableSystem
               disableTransitionOnChange
             >
-              <Header />
+              <DynamicHeader />
               <main className="min-h-screen h-full w-full px-1">
                 <div className="container flex flex-col space-y-4 pt-32 lg:pt-36 overflow-x-hidden relative">
                   {props.children}
